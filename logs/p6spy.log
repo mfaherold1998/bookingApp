@@ -928,3 +928,871 @@
         contact_info varchar(255),
         primary key (id)
     );
+#1731700970239 | took 3ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists agendas 
+       drop constraint if exists FKad8qtj4jisuf8g2eh7sxmyfyi
+
+    alter table if exists agendas 
+       drop constraint if exists FKad8qtj4jisuf8g2eh7sxmyfyi;
+#1731700970242 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       drop constraint if exists FKqb0hw90djslecy59mnes8lbtq
+
+    alter table if exists bookings 
+       drop constraint if exists FKqb0hw90djslecy59mnes8lbtq;
+#1731700970242 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       drop constraint if exists FKeskil2o07k6m8psw18xu2xnco
+
+    alter table if exists bookings 
+       drop constraint if exists FKeskil2o07k6m8psw18xu2xnco;
+#1731700970243 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       drop constraint if exists FKnjcat6x89sbqaq89dogh4xi2y
+
+    alter table if exists bookings 
+       drop constraint if exists FKnjcat6x89sbqaq89dogh4xi2y;
+#1731700970243 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKpqts9cbxg0duu2uwg34bkthgt
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKpqts9cbxg0duu2uwg34bkthgt;
+#1731700970244 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKnsdce2stkb5xntxnsounmm1tq
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKnsdce2stkb5xntxnsounmm1tq;
+#1731700970244 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKg4rkfc986e8fohc5ccgsm98pk
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKg4rkfc986e8fohc5ccgsm98pk;
+#1731700970245 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKrnm33s5avx4ea31lkb7cl8sbk
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKrnm33s5avx4ea31lkb7cl8sbk;
+#1731700970245 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employees 
+       drop constraint if exists FKg3v2r6i8aijwvcmp0l97iyj5l
+
+    alter table if exists employees 
+       drop constraint if exists FKg3v2r6i8aijwvcmp0l97iyj5l;
+#1731700970249 | took 2ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists agendas cascade
+
+    drop table if exists agendas cascade;
+#1731700970250 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists bookings cascade
+
+    drop table if exists bookings cascade;
+#1731700970251 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists clients cascade
+
+    drop table if exists clients cascade;
+#1731700970252 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists corporation_proprietor cascade
+
+    drop table if exists corporation_proprietor cascade;
+#1731700970254 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists corporations cascade
+
+    drop table if exists corporations cascade;
+#1731700970254 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists employee_procedure cascade
+
+    drop table if exists employee_procedure cascade;
+#1731700970256 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists employees cascade
+
+    drop table if exists employees cascade;
+#1731700970258 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists procedures cascade
+
+    drop table if exists procedures cascade;
+#1731700970259 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists proprietors cascade
+
+    drop table if exists proprietors cascade;
+#1731700970261 | took 2ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists subdivisions cascade
+
+    drop table if exists subdivisions cascade;
+#1731700970275 | took 10ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table agendas (
+        day date not null,
+        deleted boolean not null,
+        end_hour time(6),
+        start_hour time(6),
+        created_at timestamp(6),
+        employee_id bigint unique,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        primary key (id)
+    )
+
+    create table agendas (
+        day date not null,
+        deleted boolean not null,
+        end_hour time(6),
+        start_hour time(6),
+        created_at timestamp(6),
+        employee_id bigint unique,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        primary key (id)
+    );
+#1731700970279 | took 3ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table bookings (
+        booking_day date,
+        deleted boolean not null,
+        end_time time(6),
+        start_time time(6),
+        client_id bigint not null,
+        created_at timestamp(6),
+        employee_id bigint not null,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        procedure_id bigint not null,
+        primary key (id)
+    )
+
+    create table bookings (
+        booking_day date,
+        deleted boolean not null,
+        end_time time(6),
+        start_time time(6),
+        client_id bigint not null,
+        created_at timestamp(6),
+        employee_id bigint not null,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        procedure_id bigint not null,
+        primary key (id)
+    );
+#1731700970285 | took 4ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table clients (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    )
+
+    create table clients (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    );
+#1731700970286 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table corporation_proprietor (
+        corporation_id bigint not null,
+        proprietor_id bigint not null
+    )
+
+    create table corporation_proprietor (
+        corporation_id bigint not null,
+        proprietor_id bigint not null
+    );
+#1731700970290 | took 3ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table corporations (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    )
+
+    create table corporations (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    );
+#1731700970292 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table employee_procedure (
+        employee_id bigint not null,
+        procedure_id bigint not null
+    )
+
+    create table employee_procedure (
+        employee_id bigint not null,
+        procedure_id bigint not null
+    );
+#1731700970299 | took 5ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table employees (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        subdivision_id bigint,
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    )
+
+    create table employees (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        subdivision_id bigint,
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    );
+#1731700970302 | took 3ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table procedures (
+        deleted boolean not null,
+        estimated_time_in_minutes integer,
+        price float(53) not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    )
+
+    create table procedures (
+        deleted boolean not null,
+        estimated_time_in_minutes integer,
+        price float(53) not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    );
+#1731700970309 | took 5ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table proprietors (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    )
+
+    create table proprietors (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    );
+#1731700970314 | took 4ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table subdivisions (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        adress varchar(255) not null,
+        contact_info varchar(255),
+        primary key (id)
+    )
+
+    create table subdivisions (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        adress varchar(255) not null,
+        contact_info varchar(255),
+        primary key (id)
+    );
+#1731700970318 | took 4ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists agendas 
+       add constraint FKad8qtj4jisuf8g2eh7sxmyfyi 
+       foreign key (employee_id) 
+       references employees
+
+    alter table if exists agendas 
+       add constraint FKad8qtj4jisuf8g2eh7sxmyfyi 
+       foreign key (employee_id) 
+       references employees;
+#1731700970320 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       add constraint FKqb0hw90djslecy59mnes8lbtq 
+       foreign key (client_id) 
+       references clients
+
+    alter table if exists bookings 
+       add constraint FKqb0hw90djslecy59mnes8lbtq 
+       foreign key (client_id) 
+       references clients;
+#1731700970321 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       add constraint FKeskil2o07k6m8psw18xu2xnco 
+       foreign key (employee_id) 
+       references employees
+
+    alter table if exists bookings 
+       add constraint FKeskil2o07k6m8psw18xu2xnco 
+       foreign key (employee_id) 
+       references employees;
+#1731700970322 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       add constraint FKnjcat6x89sbqaq89dogh4xi2y 
+       foreign key (procedure_id) 
+       references procedures
+
+    alter table if exists bookings 
+       add constraint FKnjcat6x89sbqaq89dogh4xi2y 
+       foreign key (procedure_id) 
+       references procedures;
+#1731700970323 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       add constraint FKpqts9cbxg0duu2uwg34bkthgt 
+       foreign key (proprietor_id) 
+       references proprietors
+
+    alter table if exists corporation_proprietor 
+       add constraint FKpqts9cbxg0duu2uwg34bkthgt 
+       foreign key (proprietor_id) 
+       references proprietors;
+#1731700970324 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       add constraint FKnsdce2stkb5xntxnsounmm1tq 
+       foreign key (corporation_id) 
+       references corporations
+
+    alter table if exists corporation_proprietor 
+       add constraint FKnsdce2stkb5xntxnsounmm1tq 
+       foreign key (corporation_id) 
+       references corporations;
+#1731700970325 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       add constraint FKg4rkfc986e8fohc5ccgsm98pk 
+       foreign key (procedure_id) 
+       references procedures
+
+    alter table if exists employee_procedure 
+       add constraint FKg4rkfc986e8fohc5ccgsm98pk 
+       foreign key (procedure_id) 
+       references procedures;
+#1731700970326 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       add constraint FKrnm33s5avx4ea31lkb7cl8sbk 
+       foreign key (employee_id) 
+       references employees
+
+    alter table if exists employee_procedure 
+       add constraint FKrnm33s5avx4ea31lkb7cl8sbk 
+       foreign key (employee_id) 
+       references employees;
+#1731700970327 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employees 
+       add constraint FKg3v2r6i8aijwvcmp0l97iyj5l 
+       foreign key (subdivision_id) 
+       references subdivisions
+
+    alter table if exists employees 
+       add constraint FKg3v2r6i8aijwvcmp0l97iyj5l 
+       foreign key (subdivision_id) 
+       references subdivisions;
+#1731701315598 | took 2ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists agendas 
+       drop constraint if exists FKad8qtj4jisuf8g2eh7sxmyfyi
+
+    alter table if exists agendas 
+       drop constraint if exists FKad8qtj4jisuf8g2eh7sxmyfyi;
+#1731701315599 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       drop constraint if exists FKqb0hw90djslecy59mnes8lbtq
+
+    alter table if exists bookings 
+       drop constraint if exists FKqb0hw90djslecy59mnes8lbtq;
+#1731701315600 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       drop constraint if exists FKeskil2o07k6m8psw18xu2xnco
+
+    alter table if exists bookings 
+       drop constraint if exists FKeskil2o07k6m8psw18xu2xnco;
+#1731701315601 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       drop constraint if exists FKnjcat6x89sbqaq89dogh4xi2y
+
+    alter table if exists bookings 
+       drop constraint if exists FKnjcat6x89sbqaq89dogh4xi2y;
+#1731701315602 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKpqts9cbxg0duu2uwg34bkthgt
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKpqts9cbxg0duu2uwg34bkthgt;
+#1731701315602 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKnsdce2stkb5xntxnsounmm1tq
+
+    alter table if exists corporation_proprietor 
+       drop constraint if exists FKnsdce2stkb5xntxnsounmm1tq;
+#1731701315602 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKg4rkfc986e8fohc5ccgsm98pk
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKg4rkfc986e8fohc5ccgsm98pk;
+#1731701315603 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKrnm33s5avx4ea31lkb7cl8sbk
+
+    alter table if exists employee_procedure 
+       drop constraint if exists FKrnm33s5avx4ea31lkb7cl8sbk;
+#1731701315604 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employees 
+       drop constraint if exists FKg3v2r6i8aijwvcmp0l97iyj5l
+
+    alter table if exists employees 
+       drop constraint if exists FKg3v2r6i8aijwvcmp0l97iyj5l;
+#1731701315605 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists subdivisions 
+       drop constraint if exists FK41xrva2tsqtljyppxt2sjsyxo
+
+    alter table if exists subdivisions 
+       drop constraint if exists FK41xrva2tsqtljyppxt2sjsyxo;
+#1731701315610 | took 3ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists agendas cascade
+
+    drop table if exists agendas cascade;
+#1731701315611 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists bookings cascade
+
+    drop table if exists bookings cascade;
+#1731701315613 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists clients cascade
+
+    drop table if exists clients cascade;
+#1731701315614 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists corporation_proprietor cascade
+
+    drop table if exists corporation_proprietor cascade;
+#1731701315615 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists corporations cascade
+
+    drop table if exists corporations cascade;
+#1731701315616 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists employee_procedure cascade
+
+    drop table if exists employee_procedure cascade;
+#1731701315618 | took 2ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists employees cascade
+
+    drop table if exists employees cascade;
+#1731701315620 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists procedures cascade
+
+    drop table if exists procedures cascade;
+#1731701315622 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists proprietors cascade
+
+    drop table if exists proprietors cascade;
+#1731701315624 | took 2ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    drop table if exists subdivisions cascade
+
+    drop table if exists subdivisions cascade;
+#1731701315636 | took 7ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table agendas (
+        day date not null,
+        deleted boolean not null,
+        end_hour time(6),
+        start_hour time(6),
+        created_at timestamp(6),
+        employee_id bigint unique,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        primary key (id)
+    )
+
+    create table agendas (
+        day date not null,
+        deleted boolean not null,
+        end_hour time(6),
+        start_hour time(6),
+        created_at timestamp(6),
+        employee_id bigint unique,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        primary key (id)
+    );
+#1731701315640 | took 4ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table bookings (
+        booking_day date,
+        deleted boolean not null,
+        end_time time(6),
+        start_time time(6),
+        client_id bigint not null,
+        created_at timestamp(6),
+        employee_id bigint not null,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        procedure_id bigint not null,
+        primary key (id)
+    )
+
+    create table bookings (
+        booking_day date,
+        deleted boolean not null,
+        end_time time(6),
+        start_time time(6),
+        client_id bigint not null,
+        created_at timestamp(6),
+        employee_id bigint not null,
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        procedure_id bigint not null,
+        primary key (id)
+    );
+#1731701315646 | took 5ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table clients (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    )
+
+    create table clients (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    );
+#1731701315647 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table corporation_proprietor (
+        corporation_id bigint not null,
+        proprietor_id bigint not null
+    )
+
+    create table corporation_proprietor (
+        corporation_id bigint not null,
+        proprietor_id bigint not null
+    );
+#1731701315650 | took 2ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table corporations (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    )
+
+    create table corporations (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    );
+#1731701315651 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table employee_procedure (
+        employee_id bigint not null,
+        procedure_id bigint not null
+    )
+
+    create table employee_procedure (
+        employee_id bigint not null,
+        procedure_id bigint not null
+    );
+#1731701315656 | took 4ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table employees (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        subdivision_id bigint,
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    )
+
+    create table employees (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        subdivision_id bigint,
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    );
+#1731701315660 | took 3ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table procedures (
+        deleted boolean not null,
+        estimated_time_in_minutes integer,
+        price float(53) not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    )
+
+    create table procedures (
+        deleted boolean not null,
+        estimated_time_in_minutes integer,
+        price float(53) not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        primary key (id)
+    );
+#1731701315665 | took 4ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table proprietors (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    )
+
+    create table proprietors (
+        deleted boolean not null,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        primary key (id)
+    );
+#1731701315669 | took 4ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    create table subdivisions (
+        deleted boolean not null,
+        corporation_id bigint,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        adress varchar(255) not null,
+        contact_info varchar(255),
+        primary key (id)
+    )
+
+    create table subdivisions (
+        deleted boolean not null,
+        corporation_id bigint,
+        created_at timestamp(6),
+        id bigint generated by default as identity,
+        last_update_at timestamp(6),
+        name varchar(100) not null,
+        adress varchar(255) not null,
+        contact_info varchar(255),
+        primary key (id)
+    );
+#1731701315673 | took 2ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists agendas 
+       add constraint FKad8qtj4jisuf8g2eh7sxmyfyi 
+       foreign key (employee_id) 
+       references employees
+
+    alter table if exists agendas 
+       add constraint FKad8qtj4jisuf8g2eh7sxmyfyi 
+       foreign key (employee_id) 
+       references employees;
+#1731701315674 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       add constraint FKqb0hw90djslecy59mnes8lbtq 
+       foreign key (client_id) 
+       references clients
+
+    alter table if exists bookings 
+       add constraint FKqb0hw90djslecy59mnes8lbtq 
+       foreign key (client_id) 
+       references clients;
+#1731701315675 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       add constraint FKeskil2o07k6m8psw18xu2xnco 
+       foreign key (employee_id) 
+       references employees
+
+    alter table if exists bookings 
+       add constraint FKeskil2o07k6m8psw18xu2xnco 
+       foreign key (employee_id) 
+       references employees;
+#1731701315677 | took 1ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists bookings 
+       add constraint FKnjcat6x89sbqaq89dogh4xi2y 
+       foreign key (procedure_id) 
+       references procedures
+
+    alter table if exists bookings 
+       add constraint FKnjcat6x89sbqaq89dogh4xi2y 
+       foreign key (procedure_id) 
+       references procedures;
+#1731701315678 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       add constraint FKpqts9cbxg0duu2uwg34bkthgt 
+       foreign key (proprietor_id) 
+       references proprietors
+
+    alter table if exists corporation_proprietor 
+       add constraint FKpqts9cbxg0duu2uwg34bkthgt 
+       foreign key (proprietor_id) 
+       references proprietors;
+#1731701315679 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists corporation_proprietor 
+       add constraint FKnsdce2stkb5xntxnsounmm1tq 
+       foreign key (corporation_id) 
+       references corporations
+
+    alter table if exists corporation_proprietor 
+       add constraint FKnsdce2stkb5xntxnsounmm1tq 
+       foreign key (corporation_id) 
+       references corporations;
+#1731701315680 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       add constraint FKg4rkfc986e8fohc5ccgsm98pk 
+       foreign key (procedure_id) 
+       references procedures
+
+    alter table if exists employee_procedure 
+       add constraint FKg4rkfc986e8fohc5ccgsm98pk 
+       foreign key (procedure_id) 
+       references procedures;
+#1731701315680 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employee_procedure 
+       add constraint FKrnm33s5avx4ea31lkb7cl8sbk 
+       foreign key (employee_id) 
+       references employees
+
+    alter table if exists employee_procedure 
+       add constraint FKrnm33s5avx4ea31lkb7cl8sbk 
+       foreign key (employee_id) 
+       references employees;
+#1731701315681 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists employees 
+       add constraint FKg3v2r6i8aijwvcmp0l97iyj5l 
+       foreign key (subdivision_id) 
+       references subdivisions
+
+    alter table if exists employees 
+       add constraint FKg3v2r6i8aijwvcmp0l97iyj5l 
+       foreign key (subdivision_id) 
+       references subdivisions;
+#1731701315681 | took 0ms | statement | connection 0| url jdbc:p6spy:postgresql://localhost:5432/bookingapp
+
+    alter table if exists subdivisions 
+       add constraint FK41xrva2tsqtljyppxt2sjsyxo 
+       foreign key (corporation_id) 
+       references corporations
+
+    alter table if exists subdivisions 
+       add constraint FK41xrva2tsqtljyppxt2sjsyxo 
+       foreign key (corporation_id) 
+       references corporations;

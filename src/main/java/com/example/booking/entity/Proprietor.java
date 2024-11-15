@@ -4,6 +4,9 @@ import com.example.booking.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -19,8 +22,14 @@ public class Proprietor extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String name;
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
 
     private String email;
+
+    @ManyToMany(mappedBy = "proprietors")
+    private List<Corporation> corporations = Collections.emptyList();
 }

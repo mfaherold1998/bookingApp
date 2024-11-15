@@ -4,6 +4,8 @@ import com.example.booking.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -27,4 +29,11 @@ public class Subdivision extends BaseEntity {
 
     @Column(name = "contact_info")
     private String email;
+
+    @OneToMany(mappedBy = "subdivision")
+    private List<Employee> employees;
+
+    @ManyToOne
+    @JoinColumn(name = "corporation_id")
+    private Corporation corporation;
 }
