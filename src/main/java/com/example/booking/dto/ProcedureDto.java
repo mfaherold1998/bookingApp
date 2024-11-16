@@ -1,4 +1,4 @@
-package com.example.booking.Dto;
+package com.example.booking.dto;
 
 import com.example.booking.common.BaseDto;
 import jakarta.validation.constraints.NotNull;
