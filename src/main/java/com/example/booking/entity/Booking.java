@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,9 +27,9 @@ public class Booking extends BaseEntity {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @ManyToOne
-    @JoinColumn(name = "procedure_id", nullable = false)
-    private Procedure procedure;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "booking_procedure", joinColumns = @JoinColumn(name = "booking_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
+    private List<Procedure> procedures = Collections.emptyList();
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)

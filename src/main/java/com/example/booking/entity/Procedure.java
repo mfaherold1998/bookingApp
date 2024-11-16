@@ -34,6 +34,9 @@ public class Procedure extends BaseEntity {
     @ManyToMany(mappedBy = "procedures")
     private List<Employee> employees = Collections.emptyList();
 
-    @OneToMany(mappedBy = "procedure")
+    @ManyToMany(mappedBy = "procedures")
+    private List<Subdivision> subdivisions = Collections.emptyList();
+
+    @ManyToMany(mappedBy = "procedures")
     private List<Booking> bookings = Collections.emptyList();
 }

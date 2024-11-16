@@ -4,6 +4,7 @@ import com.example.booking.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -36,4 +37,8 @@ public class Subdivision extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "corporation_id")
     private Corporation corporation;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "subdivision_procedure", joinColumns = @JoinColumn(name = "subdivision_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
+    private List<Procedure> procedures = Collections.emptyList();
 }

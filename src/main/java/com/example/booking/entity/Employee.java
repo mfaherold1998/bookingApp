@@ -30,6 +30,10 @@ public class Employee extends BaseEntity {
 
     private String email;
 
+    @OneToOne
+    @JoinColumn(name = "agenda_id")
+    private EmployeeAgenda agenda;
+
     @ManyToOne
     @JoinColumn(name = "subdivision_id" )
     private Subdivision subdivision;

@@ -31,8 +31,4 @@ public class EmployeeAgenda extends BaseEntity {
     @Column(name= "end_hour")
     private LocalTime end;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
 }
