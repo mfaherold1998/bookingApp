@@ -16,8 +16,6 @@ import lombok.*;
 public class SubdivisionDto extends BaseDto {
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z\\s]+$")
-    @Size(min=1,max=100)
     private String name;
 
     private String adress;

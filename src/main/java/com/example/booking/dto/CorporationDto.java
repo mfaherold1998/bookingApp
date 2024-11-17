@@ -12,6 +12,5 @@ import lombok.*;
 @Builder
 public class CorporationDto extends BaseDto {
     @NotNull
-    @Size(min=1,max=100)
     private String name;
 }

@@ -15,13 +15,9 @@ import lombok.*;
 public class ProprietorDto extends BaseDto {
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z\\s]+$")
-    @Size(min=1,max=100)
     private String firstName;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z\\s]+$")
-    @Size(min=1,max=100)
     private String lastName;
 
     @Email

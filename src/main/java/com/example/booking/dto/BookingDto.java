@@ -32,4 +32,5 @@ public class BookingDto extends BaseDto {
     private LocalDate bookingDay;
     private LocalTime startTime;
     private LocalTime endTime;
+    private String status = "Pending";
 }

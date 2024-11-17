@@ -40,4 +40,5 @@ public class Booking extends BaseEntity {
     private LocalDate bookingDay;
     private LocalTime startTime;
     private LocalTime endTime;
+    private String status = "Pending"; //(Pending, Ongoing, Passed)
 }
