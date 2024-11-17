@@ -1,6 +1,7 @@
 package com.example.booking.common;
 
 
+import com.example.booking.exception.NotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
