@@ -3,6 +3,7 @@ package com.example.booking.entity;
 import com.example.booking.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +18,7 @@ import java.util.List;
 @Builder
 
 @Table(name = "Bookings")
+@SQLRestriction("deleted = false")
 public class Booking extends BaseEntity {
 
     @Id

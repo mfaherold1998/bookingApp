@@ -3,6 +3,7 @@ package com.example.booking.entity;
 import com.example.booking.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@SQLRestriction("deleted = false")
 @Table(name = "Corporations")
 
 public class Corporation extends BaseEntity {

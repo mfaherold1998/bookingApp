@@ -1,4 +1,4 @@
-package com.example.booking.Mapper;
+package com.example.booking.mapper;
 
 import com.example.booking.dto.ProprietorDto;
 import com.example.booking.common.BaseMapper;
