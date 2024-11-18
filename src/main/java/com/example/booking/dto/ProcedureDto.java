@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 public class ProcedureDto extends BaseDto {
 
     @NotNull

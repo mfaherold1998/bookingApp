@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 public class CorporationDto extends BaseDto {
     @NotNull
     private String name;

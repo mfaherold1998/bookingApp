@@ -10,7 +10,7 @@ import java.time.LocalTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 public class EmployeeAgendaDto extends BaseDto {
     private LocalDate day;
     private LocalTime start;

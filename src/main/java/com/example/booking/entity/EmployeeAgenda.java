@@ -13,10 +13,9 @@ import java.time.LocalTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 @SQLRestriction("deleted = false")
 @Table(name = "Agendas")
-
 public class EmployeeAgenda extends BaseEntity {
 
     @Id

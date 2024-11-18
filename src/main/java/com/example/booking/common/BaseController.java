@@ -20,7 +20,7 @@ public abstract class BaseController<D extends BaseDto, S extends BaseService<?,
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<D> getById(@NotNull @PathVariable Long id) {
+    public ResponseEntity<D> getById(@PathVariable Long id) {
         return new ResponseEntity<>(service.getDtoById(id), HttpStatus.OK);
     }
 
@@ -35,7 +35,7 @@ public abstract class BaseController<D extends BaseDto, S extends BaseService<?,
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Boolean> delete(@NotNull @PathVariable Long id) {
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

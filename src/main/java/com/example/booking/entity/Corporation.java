@@ -13,10 +13,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@SQLRestriction("deleted = false")
-@Table(name = "Corporations")
 
+@Table(name = "Corporations")
+@SQLRestriction("deleted = false")
 public class Corporation extends BaseEntity {
 
     @Id

@@ -12,7 +12,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 public class SubdivisionDto extends BaseDto {
 
     @NotNull

@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 
 @Table(name = "Procedures")
 @SQLRestriction("deleted = false")
