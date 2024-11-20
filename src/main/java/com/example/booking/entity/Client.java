@@ -6,7 +6,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -31,5 +33,5 @@ public class Client extends BaseEntity {
     private String email;
 
     @OneToMany(mappedBy = "client")
-    private List<Booking> bookings = Collections.emptyList();
+    private Set<Booking> bookings = new HashSet<>();
 }

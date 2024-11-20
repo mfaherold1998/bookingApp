@@ -23,7 +23,7 @@ public class EmployeeAgenda extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDate day;
+    private LocalDate workDay;
 
     @Column(name= "start_hour")
     private LocalTime start;

@@ -6,7 +6,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -31,5 +33,5 @@ public class Proprietor extends BaseEntity {
     private String email;
 
     @ManyToMany(mappedBy = "proprietors")
-    private List<Corporation> corporations = Collections.emptyList();
+    private Set<Corporation> corporations = new HashSet<>();
 }

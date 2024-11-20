@@ -6,7 +6,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -40,8 +42,8 @@ public class Employee extends BaseEntity {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_procedure", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
-    private List<Procedure> procedures = Collections.emptyList();
+    private Set<Procedure> procedures = new HashSet<>();
 
     @OneToMany(mappedBy = "employee")
-    private List<Booking> bookings = Collections.emptyList();
+    private Set<Booking> bookings = new HashSet<>();
 }

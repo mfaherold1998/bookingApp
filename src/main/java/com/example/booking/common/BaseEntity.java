@@ -22,7 +22,7 @@ public class BaseEntity {
     @Column(name = "last_update_at")
     protected LocalDateTime updatedDate;
 
-    @Column(name = "deleted", nullable = false)
+    @Column(name = "deleted", columnDefinition = "BOOLEAN DEFAULT FALSE")
     protected Boolean deleted = Boolean.FALSE;
 
 }

@@ -6,7 +6,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -32,11 +34,11 @@ public class Procedure extends BaseEntity {
     private int timeInMinutes;
 
     @ManyToMany(mappedBy = "procedures")
-    private List<Employee> employees = Collections.emptyList();
+    private Set<Employee> employees = new HashSet<>();
 
     @ManyToMany(mappedBy = "procedures")
-    private List<Subdivision> subdivisions = Collections.emptyList();
+    private Set<Subdivision> subdivisions = new HashSet<>();
 
     @ManyToMany(mappedBy = "procedures")
-    private List<Booking> bookings = Collections.emptyList();
+    private Set<Booking> bookings = new HashSet<>();
 }

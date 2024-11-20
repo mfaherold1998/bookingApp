@@ -6,7 +6,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -32,7 +34,7 @@ public class Subdivision extends BaseEntity {
     private String email;
 
     @OneToMany(mappedBy = "subdivision")
-    private List<Employee> employees;
+    private Set<Employee> employees = new HashSet<>();;
 
     @ManyToOne
     @JoinColumn(name = "corporation_id")
@@ -40,5 +42,5 @@ public class Subdivision extends BaseEntity {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "subdivision_procedure", joinColumns = @JoinColumn(name = "subdivision_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
-    private List<Procedure> procedures = Collections.emptyList();
+    private Set<Procedure> procedures = new HashSet<>();
 }
