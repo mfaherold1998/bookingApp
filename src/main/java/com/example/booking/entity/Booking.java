@@ -1,6 +1,7 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
@@ -8,9 +9,7 @@ import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,14 +26,17 @@ public class Booking extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "booking_procedure", joinColumns = @JoinColumn(name = "booking_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
-    private Set<Procedure> procedures = new HashSet<>();
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "procedure_id", nullable = false)
+    private Procedure procedure;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;

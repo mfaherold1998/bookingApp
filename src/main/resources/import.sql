@@ -40,22 +40,22 @@ INSERT INTO public.proprietors (id, first_name, last_name, email) values (3, 'ow
 INSERT INTO public.proprietors (id, first_name, last_name, email) values (4, 'owner4', 'owner4', 'owner1@gmail.com');
 INSERT INTO public.proprietors (id, first_name, last_name, email) values (5, 'owner5', 'owner5', 'owner1@gmail.com');
 
-INSERT INTO public.bookings (id, employee_id, client_id, booking_day, start_time, end_time, status) values (1, 1, 1,'2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, booking_day, start_time, end_time, status) values (2, 2, 2,'2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, booking_day, start_time, end_time, status) values (3, 3, 3,'2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, booking_day, start_time, end_time, status) values (4, 4, 4,'2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, booking_day, start_time, end_time, status) values (5, 5, 5,'2024-11-22', '09:30:00', '13:30:00', 'PENDING');
+INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (1, 1, 1, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
+INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (2, 2, 2, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
+INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (3, 3, 3, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
+INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (4, 4, 4, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
+INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (5, 5, 5, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
 
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,1);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,2);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,3);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,4);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,5);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,1);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,2);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,3);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,4);
-INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,5);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,1);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,2);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,3);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,4);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,5);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,1);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,2);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,3);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,4);
+--INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,5);
 
 INSERT INTO public.corporation_proprietor (corporation_id, proprietor_id) values (1,1);
 INSERT INTO public.corporation_proprietor (corporation_id, proprietor_id) values (1,2);

@@ -1,13 +1,12 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,6 +31,7 @@ public class Client extends BaseEntity {
     @Column
     private String email;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private Set<Booking> bookings = new HashSet<>();
 }

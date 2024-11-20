@@ -89,3 +89,14 @@
         contact_info varchar(255),
         primary key (id)
     );
+
+------------------------------------------------------------------------------------------
+
+@JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "time_card_id", nullable = false)
+    private TimeCard timeCard;
+
+@JsonManagedReference
+    @OneToMany(mappedBy = "timeCard", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Activity> activities;

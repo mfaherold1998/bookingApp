@@ -1,13 +1,12 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,6 +43,7 @@ public class Employee extends BaseEntity {
     @JoinTable(name = "employee_procedure", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
     private Set<Procedure> procedures = new HashSet<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "employee")
     private Set<Booking> bookings = new HashSet<>();
 }
