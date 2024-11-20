@@ -1,6 +1,7 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
@@ -29,6 +30,7 @@ public class Corporation extends BaseEntity {
     @JoinTable(name = "corporation_proprietor", joinColumns = @JoinColumn(name = "corporation_id"), inverseJoinColumns = @JoinColumn(name = "proprietor_id"))
     private Set<Proprietor> proprietors = new HashSet<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "corporation")
     private Set<Subdivision> subdivisions = new HashSet<>();
 

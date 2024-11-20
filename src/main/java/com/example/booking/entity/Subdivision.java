@@ -1,6 +1,7 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
@@ -34,6 +35,7 @@ public class Subdivision extends BaseEntity {
     @OneToMany(mappedBy = "subdivision")
     private Set<Employee> employees = new HashSet<>();;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "corporation_id")
     private Corporation corporation;
