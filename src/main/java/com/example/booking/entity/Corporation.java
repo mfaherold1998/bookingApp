@@ -26,6 +26,7 @@ public class Corporation extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String name;
 
+    @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "corporation_proprietor", joinColumns = @JoinColumn(name = "corporation_id"), inverseJoinColumns = @JoinColumn(name = "proprietor_id"))
     private Set<Proprietor> proprietors = new HashSet<>();

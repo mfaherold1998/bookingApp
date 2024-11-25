@@ -1,6 +1,7 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
@@ -30,6 +31,7 @@ public class Proprietor extends BaseEntity {
 
     private String email;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "proprietors")
     private Set<Corporation> corporations = new HashSet<>();
 }

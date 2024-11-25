@@ -35,10 +35,12 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "agenda_id")
     private EmployeeAgenda agenda;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "subdivision_id" )
     private Subdivision subdivision;
 
+    @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_procedure", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
     private Set<Procedure> procedures = new HashSet<>();

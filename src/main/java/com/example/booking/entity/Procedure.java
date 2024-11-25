@@ -1,6 +1,7 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,9 +33,11 @@ public class Procedure extends BaseEntity {
     @Column(name = "estimated_time_in_minutes")
     private int timeInMinutes;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "procedures")
     private Set<Employee> employees = new HashSet<>();
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "procedures")
     private Set<Subdivision> subdivisions = new HashSet<>();
 
