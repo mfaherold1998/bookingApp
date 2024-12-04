@@ -33,9 +33,9 @@ public class Procedure extends BaseEntity {
     @Column(name = "estimated_time_in_minutes")
     private int timeInMinutes;
 
-    @JsonBackReference
+    /*@JsonBackReference
     @ManyToMany(mappedBy = "procedures")
-    private Set<Employee> employees = new HashSet<>();
+    private Set<Employee> employees = new HashSet<>();*/
 
     @JsonBackReference
     @ManyToMany(mappedBy = "procedures")
