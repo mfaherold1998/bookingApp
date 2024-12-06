@@ -80,6 +80,12 @@ INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values 
 INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,4);
 INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,5);
 
+INSERT INTO public.users (id, name, username, email, password) VALUES (1,'ramesh','ramesh','ramesh@gmail.com','$2a$10$5PiyN0MsG0y886d8xWXtwuLXK0Y7zZwcN5xm82b4oDSVr7yF0O6em'), (2,'admin','admin','admin@gmail.com','$2a$10$gqHrslMttQWSsDSVRTK1OehkkBiXsJ/a4z2OURU./dizwOQu5Lovu');
+
+INSERT INTO public.roles (id, name) VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
+
+INSERT INTO public.users_roles (user_id, role_id) VALUES (2,1),(1,2);
+
 ALTER SEQUENCE public.agendas_id_seq INCREMENT BY 1 START 5 RESTART 5;
 ALTER SEQUENCE public.bookings_id_seq INCREMENT BY 1 START 5	RESTART 5;
 ALTER SEQUENCE public.clients_id_seq INCREMENT BY 1 START 5 RESTART 5;
@@ -88,3 +94,6 @@ ALTER SEQUENCE public.employees_id_seq INCREMENT BY 1 START 5 RESTART 5;
 ALTER SEQUENCE public.procedures_id_seq INCREMENT BY 1 START 5	RESTART 5;
 ALTER SEQUENCE public.proprietors_id_seq INCREMENT BY 1 START 5 RESTART 5;
 ALTER SEQUENCE public.subdivisions_id_seq INCREMENT BY 1 START 5 RESTART 5;
+ALTER SEQUENCE public.users_id_seq INCREMENT BY 1 START 3 RESTART 3;
+ALTER SEQUENCE public.roles_id_seq INCREMENT BY 1 START 3 RESTART 3;
+--ALTER SEQUENCE public.users_roles_id_seq INCREMENT BY 1 START 3 RESTART 3;
