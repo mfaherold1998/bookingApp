@@ -1,4 +1,4 @@
-package com.example.booking.security;
+package com.example.booking.configuration;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -80,7 +80,7 @@ INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values 
 INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,4);
 INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,5);
 
-INSERT INTO public.users (id, name, username, email, password) VALUES (1,'ramesh','ramesh','ramesh@gmail.com','$2a$10$5PiyN0MsG0y886d8xWXtwuLXK0Y7zZwcN5xm82b4oDSVr7yF0O6em'), (2,'admin','admin','admin@gmail.com','$2a$10$gqHrslMttQWSsDSVRTK1OehkkBiXsJ/a4z2OURU./dizwOQu5Lovu');
+INSERT INTO public.users (id, first_name, last_name, username, email, password, confirmed_email) VALUES (1,'ramesh','ulah','ramesh','ramesh@gmail.com','$2a$10$5PiyN0MsG0y886d8xWXtwuLXK0Y7zZwcN5xm82b4oDSVr7yF0O6em', TRUE), (2,'admin','admin','admin','admin@gmail.com','$2a$10$gqHrslMttQWSsDSVRTK1OehkkBiXsJ/a4z2OURU./dizwOQu5Lovu', TRUE);
 
 INSERT INTO public.roles (id, name) VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
 
