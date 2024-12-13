@@ -1,0 +1,4 @@
+target/*.war
+target/*.ear
+*.git
+*.idea
