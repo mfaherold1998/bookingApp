@@ -5,11 +5,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+
 @EqualsAndHashCode(callSuper = true)
 @Getter
-public class NotFoundException extends CustomException {
+public class AuthException extends CustomException {
     @Builder
-    public NotFoundException() {
-        super("Not Found Exception", HttpStatus.NOT_FOUND);
+    public AuthException(String message) {
+        super(message, HttpStatus.FORBIDDEN);
     }
 }

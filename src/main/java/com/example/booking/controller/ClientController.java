@@ -2,6 +2,7 @@ package com.example.booking.controller;
 
 import com.example.booking.common.BaseController;
 import com.example.booking.dto.ClientDto;
+import com.example.booking.entity.Client;
 import com.example.booking.service.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,7 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/clients")
 @Tag(name = "Clients", description = "The Clients API")
-public class ClientController extends BaseController<ClientDto, ClientService> {
+public class ClientController extends BaseController<Client,ClientDto, ClientService> {
 
     public ClientController(ClientService service) {
         super(service);

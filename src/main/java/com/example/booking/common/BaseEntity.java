@@ -16,13 +16,13 @@ public class BaseEntity {
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    protected LocalDateTime createdDate;
+    protected LocalDateTime createdDate = LocalDateTime.now();
 
     @UpdateTimestamp
     @Column(name = "last_update_at")
-    protected LocalDateTime updatedDate;
+    protected LocalDateTime modifiedDate = LocalDateTime.now();
 
     @Column(name = "deleted", columnDefinition = "BOOLEAN DEFAULT FALSE")
-    protected Boolean deleted = Boolean.FALSE;
+    protected Boolean isDeleted = Boolean.FALSE;
 
 }

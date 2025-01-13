@@ -1,22 +1,22 @@
 package com.example.booking.exception;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
-@Data
+@EqualsAndHashCode(callSuper = true)
+@Getter
+@AllArgsConstructor
 public class CustomException extends RuntimeException{
 
     private final Date timestamp;
     private final String message;
-    private final String details;
     private final HttpStatus httpStatus;
 
-    public CustomException(String message, String details, HttpStatus httpStatus) {
+    public CustomException(String message, HttpStatus httpStatus) {
         this.timestamp = new Date();
         this.message = message;
-        this.details = details;
         this.httpStatus = httpStatus;
     }
 }
