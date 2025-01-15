@@ -8,16 +8,21 @@ public class Enums {
     @Getter
     @AllArgsConstructor
     public enum RoleNames{
-        SUPERADMIN("SUPERADMIN"),
-        ADMIN("ADMIN"),
-        STANDARD("STANDARD");
+
+        DEVELOPER("DEVELOPER"),
+        PROPRIETOR("PROPRIETOR"),
+        EMPLOYEE("EMPLOYEE"),
+        CLIENT("CLIENT");
+
         private final String value;
     }
 
     @Getter
     @AllArgsConstructor
     public enum TokenType{
+
         EMAIL_VERIFICATION("EMAIL_VERIFICATION");
+
         private final String value;
     }
 

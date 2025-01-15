@@ -34,4 +34,8 @@ public class Client extends BaseEntity {
     @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private Set<Booking> bookings = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true, unique = true)
+    private UserEntity user;
 }

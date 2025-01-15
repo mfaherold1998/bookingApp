@@ -10,9 +10,10 @@ INSERT INTO public.clients (id, first_name, last_name, email) values (3,'karla',
 INSERT INTO public.clients (id, first_name, last_name, email) values (4,'marco', 'artigas','nanda@gmail.com');
 INSERT INTO public.clients (id, first_name, last_name, email) values (5,'daniel', 'artigas','nanda@gmail.com');
 
-INSERT INTO public.roles (id, "name") values (1, 'SUPERADMIN');
-INSERT INTO public.roles (id, "name") values (2, 'ADMIN');
-INSERT INTO public.roles (id, "name") values (3, 'STANDARD');
+INSERT INTO public.roles (id, "name") values (1, 'DEVELOPER');
+INSERT INTO public.roles (id, "name") values (2, 'PROPRIETOR');
+INSERT INTO public.roles (id, "name") values (3, 'EMPLOYEE');
+INSERT INTO public.roles (id, "name") values (4, 'CLIENT');
 
 INSERT INTO public.corporations (id, "name") values (1, 'corp1');
 INSERT INTO public.corporations (id, "name") values (2, 'corp2');
@@ -93,4 +94,4 @@ ALTER SEQUENCE public.procedures_id_seq INCREMENT BY 1 START 5	RESTART 5;
 ALTER SEQUENCE public.proprietors_id_seq INCREMENT BY 1 START 5 RESTART 5;
 ALTER SEQUENCE public.subdivisions_id_seq INCREMENT BY 1 START 5 RESTART 5;
 ALTER SEQUENCE public.users_id_seq INCREMENT BY 1 START 1 RESTART 1;
-ALTER SEQUENCE public.roles_id_seq INCREMENT BY 1 START 3 RESTART 3;
+ALTER SEQUENCE public.roles_id_seq INCREMENT BY 1 START 4 RESTART 4;

@@ -34,4 +34,8 @@ public class Proprietor extends BaseEntity {
     @JsonBackReference
     @ManyToMany(mappedBy = "proprietors")
     private Set<Corporation> corporations = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true, unique = true)
+    private UserEntity user;
 }

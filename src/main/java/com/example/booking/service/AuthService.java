@@ -56,9 +56,9 @@ public class AuthService {
         newUser.setEmail(request.getEmail());
         newUser.setFirstName(request.getFirstName());
         newUser.setLastName(request.getLastName());
-        Set<RoleEntity> roleEntitySet = new HashSet<>();
-        roleEntitySet.add(roleService.findByName(Enums.RoleNames.STANDARD.getValue()));
-        newUser.setRoles(roleEntitySet);
+
+        newUser.setRole(roleService.findByName(Enums.RoleNames.CLIENT.getValue()));
+
         newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         newUser.setConfirmedEmail(false);
         userService.save(newUser);

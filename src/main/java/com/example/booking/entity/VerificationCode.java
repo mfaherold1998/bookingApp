@@ -1,6 +1,7 @@
 package com.example.booking.entity;
 
 import com.example.booking.utils.Enums;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
@@ -23,6 +24,7 @@ public class VerificationCode {
 
     private Date expirationDate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;

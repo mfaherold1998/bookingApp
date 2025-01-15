@@ -48,4 +48,8 @@ public class Employee extends BaseEntity {
     @JsonManagedReference
     @OneToMany(mappedBy = "employee")
     private Set<Booking> bookings = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true, unique = true)
+    private UserEntity user;
 }

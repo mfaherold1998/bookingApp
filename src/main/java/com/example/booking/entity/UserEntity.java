@@ -1,6 +1,8 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,19 +36,33 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private String password;
     private Boolean confirmedEmail = Boolean.FALSE;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<RefreshToken> refreshTokens;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<RefreshToken> verificationCode;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<RoleEntity> roles;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity role;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
+    private Client client;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
+    private Proprietor proprietor;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
+    private Employee employee;
+
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection< ? extends GrantedAuthority > getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        getRoles().forEach(r -> authorities.add(new SimpleGrantedAuthority(r.getName())));
+        authorities.add(new SimpleGrantedAuthority(getRole().getName()));
         return authorities;
     }
 
