@@ -9,9 +9,8 @@ public class Enums {
     @AllArgsConstructor
     public enum RoleNames{
 
-        DEVELOPER("DEVELOPER"),
+        SUPERADMIN("SUPERADMIN"),
         PROPRIETOR("PROPRIETOR"),
-        EMPLOYEE("EMPLOYEE"),
         CLIENT("CLIENT");
 
         private final String value;

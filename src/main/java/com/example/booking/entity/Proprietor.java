@@ -29,13 +29,10 @@ public class Proprietor extends BaseEntity {
     @Column
     private String lastName;
 
-    private String email;
-
     @JsonBackReference
     @ManyToMany(mappedBy = "proprietors")
     private Set<Corporation> corporations = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = true, unique = true)
+    @OneToOne(mappedBy = "proprietor", cascade = CascadeType.ALL, optional = true)
     private UserEntity user;
 }

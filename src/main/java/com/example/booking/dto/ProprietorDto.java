@@ -18,6 +18,4 @@ public class ProprietorDto extends BaseDto {
     @NotNull
     private String lastName;
 
-    @Email
-    private String email;
 }

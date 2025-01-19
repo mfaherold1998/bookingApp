@@ -25,7 +25,7 @@ public class AuthController {
 
     @Operation(
             summary = "Register an user",
-            description = "")
+            description = "Register a client in the platform in a generic way without being associated with an specific corporation.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation")
     })

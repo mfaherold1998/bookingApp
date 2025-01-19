@@ -3,10 +3,7 @@ package com.example.booking.service;
 import com.example.booking.dto.JwtAuthResponse;
 import com.example.booking.dto.SignInRequest;
 import com.example.booking.dto.SignUpRequest;
-import com.example.booking.entity.RefreshToken;
-import com.example.booking.entity.RoleEntity;
-import com.example.booking.entity.UserEntity;
-import com.example.booking.entity.VerificationCode;
+import com.example.booking.entity.*;
 import com.example.booking.exception.AuthException;
 import com.example.booking.exception.CustomException;
 import com.example.booking.repository.RefreshTokenRepository;
@@ -35,6 +32,10 @@ public class AuthService {
 
     private final RoleService roleService;
 
+    private final ClientService clientService;
+
+    private final ProprietorService proprietorService;
+
     private final RefreshTokenRepository refreshTokenRepository;
 
     private final VerificationCodeRepository verificationCodeRepository;
@@ -48,21 +49,55 @@ public class AuthService {
     @Transactional
     public Boolean register(SignUpRequest request) {
 
+        ///Controla que email es unico
         if(isEmailAlreadyRegistered(request.getEmail())){
             throw new CustomException("An account with this email already exists", HttpStatus.BAD_REQUEST);
         }
-        //TODO Un if para el caso owner/corporation y otro para el caso client
+
+        ///Determina el role para el registro
+        String role = switch (request.getRoleName()) {
+            case "user" -> Enums.RoleNames.CLIENT.getValue();
+            case "owner" -> Enums.RoleNames.PROPRIETOR.getValue();
+            default -> throw new IllegalArgumentException("Non valid Role");
+        };
+
+        ///Crear nuevo usuario con email
         UserEntity newUser = new UserEntity();
         newUser.setEmail(request.getEmail());
-        newUser.setFirstName(request.getFirstName());
-        newUser.setLastName(request.getLastName());
 
-        newUser.setRole(roleService.findByName(Enums.RoleNames.CLIENT.getValue()));
+        ///Copiar nombres (que vienen del request)
+        //newUser.setFirstName(request.getFirstName());
+        //newUser.setLastName(request.getLastName());
 
+        ///Copiar role que viene del fronted en base a que boton se clicò
+        newUser.setRole(roleService.findByName(role));
+
+        ///Email y contraseña
         newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         newUser.setConfirmedEmail(false);
+
+        ///Crear cliente o proprietor asociado
+        switch (role) {
+            case "CLIENT" -> {
+                Client c = new Client();
+                c.setFirstName(request.getFirstName());
+                c.setLastName(request.getLastName());
+                c = clientService.save(c);
+                newUser.setClient(c);
+            }
+            case "PROPRIETOR" -> {
+                Proprietor p = new Proprietor();
+                p.setFirstName(request.getFirstName());
+                p.setLastName(request.getLastName());
+                p = proprietorService.save(p);
+                newUser.setProprietor(p);
+            }
+            default -> throw new IllegalArgumentException("Non valid Role");
+        };
+
         userService.save(newUser);
 
+        ///Mandar email de verificacion
         sendVerificationEmail(request.getEmail());
 
         return Boolean.TRUE;

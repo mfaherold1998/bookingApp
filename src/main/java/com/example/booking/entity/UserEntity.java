@@ -30,8 +30,6 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     private Boolean confirmedEmail = Boolean.FALSE;
@@ -42,21 +40,23 @@ public class UserEntity extends BaseEntity implements UserDetails {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private Set<RefreshToken> verificationCode;
+    private Set<VerificationCode> verificationCode;
 
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private RoleEntity role;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
+    @OneToOne
+    @JoinColumn(name = "client_id", nullable = true, unique = true)
     private Client client;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
+    @OneToOne
+    @JoinColumn(name = "proprietor_id", nullable = true, unique = true)
     private Proprietor proprietor;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
-    private Employee employee;
+    //@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
+    //private Employee employee;
 
 
     @Override

@@ -4,16 +4,16 @@ INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (3, '2024
 INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (4, '2024-11-21', '09:30:00', '13:30:00');
 INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (5, '2024-11-22', '09:30:00', '13:30:00');
 
-INSERT INTO public.clients (id, first_name , last_name, email) values (1,'nanda', 'artigas','nanda@gmail.com');
-INSERT INTO public.clients (id, first_name , last_name, email) values (2,'fede', 'artigas','nanda@gmail.com');
-INSERT INTO public.clients (id, first_name, last_name, email) values (3,'karla', 'artigas','nanda@gmail.com');
-INSERT INTO public.clients (id, first_name, last_name, email) values (4,'marco', 'artigas','nanda@gmail.com');
-INSERT INTO public.clients (id, first_name, last_name, email) values (5,'daniel', 'artigas','nanda@gmail.com');
+INSERT INTO public.clients (id, first_name, last_name) values (1,'nanda', 'artigas');
+INSERT INTO public.clients (id, first_name, last_name) values (2,'fede', 'artigas');
+INSERT INTO public.clients (id, first_name, last_name) values (3,'karla', 'artigas');
+INSERT INTO public.clients (id, first_name, last_name) values (4,'marco', 'artigas');
+INSERT INTO public.clients (id, first_name, last_name) values (5,'daniel', 'artigas');
 
-INSERT INTO public.roles (id, "name") values (1, 'DEVELOPER');
+
+INSERT INTO public.roles (id, "name") values (1, 'SUPERADMIN');
 INSERT INTO public.roles (id, "name") values (2, 'PROPRIETOR');
-INSERT INTO public.roles (id, "name") values (3, 'EMPLOYEE');
-INSERT INTO public.roles (id, "name") values (4, 'CLIENT');
+INSERT INTO public.roles (id, "name") values (3, 'CLIENT');
 
 INSERT INTO public.corporations (id, "name") values (1, 'corp1');
 INSERT INTO public.corporations (id, "name") values (2, 'corp2');
@@ -39,11 +39,22 @@ INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) va
 INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) values (4, 'color', 45.00, 45);
 INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) values (5, 'corte', 20.00, 20);
 
-INSERT INTO public.proprietors (id, first_name, last_name, email) values (1, 'owner1', 'owner1', 'owner1@gmail.com');
-INSERT INTO public.proprietors (id, first_name, last_name, email) values (2, 'owner2', 'owner2', 'owner1@gmail.com');
-INSERT INTO public.proprietors (id, first_name, last_name, email) values (3, 'owner3', 'owner3', 'owner1@gmail.com');
-INSERT INTO public.proprietors (id, first_name, last_name, email) values (4, 'owner4', 'owner4', 'owner1@gmail.com');
-INSERT INTO public.proprietors (id, first_name, last_name, email) values (5, 'owner5', 'owner5', 'owner1@gmail.com');
+INSERT INTO public.proprietors (id, first_name, last_name) values (1, 'owner1', 'owner1');
+INSERT INTO public.proprietors (id, first_name, last_name) values (2, 'owner2', 'owner2');
+INSERT INTO public.proprietors (id, first_name, last_name) values (3, 'owner3', 'owner3');
+INSERT INTO public.proprietors (id, first_name, last_name) values (4, 'owner4', 'owner4');
+INSERT INTO public.proprietors (id, first_name, last_name) values (5, 'owner5', 'owner5');
+
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (1, TRUE, 'email1@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 1, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (2, TRUE, 'email2@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 2, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (3, TRUE, 'email3@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 3, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (4, TRUE, 'email4@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 4, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (5, TRUE, 'email5@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 5, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (6, TRUE, 'email6@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 1)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (7, TRUE, 'email7@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 2)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (8, TRUE, 'email8@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 3)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (9, TRUE, 'email9@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 4)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (10, TRUE,  'email10@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 5)
 
 INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (1, 1, 1, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
 INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (2, 2, 2, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
@@ -85,13 +96,13 @@ INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values 
 INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,4);
 INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,5);
 
-ALTER SEQUENCE public.agendas_id_seq INCREMENT BY 1 START 5 RESTART 5;
-ALTER SEQUENCE public.bookings_id_seq INCREMENT BY 1 START 5 RESTART 5;
-ALTER SEQUENCE public.clients_id_seq INCREMENT BY 1 START 5 RESTART 5;
-ALTER SEQUENCE public.corporations_id_seq INCREMENT BY 1 START 5 RESTART 5;
-ALTER SEQUENCE public.employees_id_seq INCREMENT BY 1 START 5 RESTART 5;
-ALTER SEQUENCE public.procedures_id_seq INCREMENT BY 1 START 5	RESTART 5;
-ALTER SEQUENCE public.proprietors_id_seq INCREMENT BY 1 START 5 RESTART 5;
-ALTER SEQUENCE public.subdivisions_id_seq INCREMENT BY 1 START 5 RESTART 5;
-ALTER SEQUENCE public.users_id_seq INCREMENT BY 1 START 1 RESTART 1;
+ALTER SEQUENCE public.agendas_id_seq INCREMENT BY 1 START 6 RESTART 6;
+ALTER SEQUENCE public.bookings_id_seq INCREMENT BY 1 START 6 RESTART 6;
+ALTER SEQUENCE public.clients_id_seq INCREMENT BY 1 START 6 RESTART 6;
+ALTER SEQUENCE public.corporations_id_seq INCREMENT BY 1 START 6 RESTART 6;
+ALTER SEQUENCE public.employees_id_seq INCREMENT BY 1 START 6 RESTART 6;
+ALTER SEQUENCE public.procedures_id_seq INCREMENT BY 1 START 6	RESTART 6;
+ALTER SEQUENCE public.proprietors_id_seq INCREMENT BY 1 START 6 RESTART 6;
+ALTER SEQUENCE public.subdivisions_id_seq INCREMENT BY 1 START 6 RESTART 6;
+ALTER SEQUENCE public.users_id_seq INCREMENT BY 1 START 11 RESTART 11;
 ALTER SEQUENCE public.roles_id_seq INCREMENT BY 1 START 4 RESTART 4;

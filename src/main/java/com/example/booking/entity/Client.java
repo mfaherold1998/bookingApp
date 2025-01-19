@@ -28,14 +28,10 @@ public class Client extends BaseEntity {
     @Column
     private String lastName;
 
-    @Column
-    private String email;
-
     @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private Set<Booking> bookings = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = true, unique = true)
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, optional = true)
     private UserEntity user;
 }

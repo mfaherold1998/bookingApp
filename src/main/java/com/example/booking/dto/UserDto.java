@@ -11,8 +11,6 @@ import java.util.Set;
 @Data
 public class UserDto extends BaseDto {
     @NotBlank
-    private String firstName;
-    private String lastName;
     private String email;
     private Set<RoleDto> roles;
 }

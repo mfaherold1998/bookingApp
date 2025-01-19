@@ -49,10 +49,10 @@ public class SecurityConfig {
                         ).permitAll()
                 )
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(new RegexRequestMatcher("/role/get/.*", HttpMethod.GET.name())).hasAuthority(DEVELOPER.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/role/save", HttpMethod.POST.name())).hasAuthority(DEVELOPER.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/role/update/.*", HttpMethod.PUT.name())).hasAuthority(DEVELOPER.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/role/delete/.*", HttpMethod.DELETE.name())).hasAuthority(DEVELOPER.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/role/get/.*", HttpMethod.GET.name())).hasAuthority(SUPERADMIN.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/role/save", HttpMethod.POST.name())).hasAuthority(SUPERADMIN.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/role/update/.*", HttpMethod.PUT.name())).hasAuthority(SUPERADMIN.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/role/delete/.*", HttpMethod.DELETE.name())).hasAuthority(SUPERADMIN.getValue())
                 )
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(new RegexRequestMatcher("/user/get/.*", HttpMethod.GET.name())).hasAnyAuthority(PROPRIETOR.getValue(), CLIENT.getValue())
