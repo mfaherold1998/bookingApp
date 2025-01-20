@@ -32,7 +32,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(AbstractHttpConfigurer::disable) //Not needed since we use stateless JWT token authentication
+        ///Se desactiva la protección contra CSRF (Cross-Site Request Forgery) porque la autenticación basada en JWT no utiliza sesiones y no necesita esa protección.
+        http.csrf(AbstractHttpConfigurer::disable)
+                ///Se especifica un authenticationEntryPoint personalizado para manejar errores de autenticación
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authEntryPointConfiguration))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
@@ -60,13 +62,19 @@ public class SecurityConfig {
                         .requestMatchers(new RegexRequestMatcher("/user/update/.*", HttpMethod.PUT.name())).hasAnyAuthority(PROPRIETOR.getValue(), CLIENT.getValue())
                         .requestMatchers(new RegexRequestMatcher("/user/delete/.*", HttpMethod.DELETE.name())).hasAnyAuthority(PROPRIETOR.getValue(), CLIENT.getValue())
                 )
-                .authorizeHttpRequests(request -> request.anyRequest().denyAll()) //Every other request is denied
+                .authorizeHttpRequests(request -> request.anyRequest().denyAll()) ///Every other request is denied
+                ///Se establece la política de gestión de sesiones en STATELESS para JWT
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                ///validar el token JWT y autenticar al usuario con jwtAuthFilterConfiguration antes de que se realice cualquier otro procesamiento
                 .addFilterBefore(jwtAuthFilterConfiguration, UsernamePasswordAuthenticationFilter.class)
+                ///Se configura un AuthenticationProvider personalizado
                 .authenticationProvider(authenticationProvider);
         return http.build();
     }
 
+    //TODO restringir origen de las solicitudes
+
+    ///reglas de CORS (Cross-Origin Resource Sharing), que permiten que el servidor maneje solicitudes de diferentes orígenes.
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -74,6 +82,7 @@ public class SecurityConfig {
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        ///registra la configuración de CORS (configuration) para todas las rutas de la aplicación ("/**").
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }

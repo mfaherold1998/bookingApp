@@ -16,7 +16,6 @@ import java.util.Random;
 @AllArgsConstructor
 
 @Table(name = "VerificationCode")
-//@SQLRestriction("deleted = false")
 public class VerificationCode {
 
     @Id
@@ -32,6 +31,7 @@ public class VerificationCode {
     private String email;
     private Enums.TokenType type;
 
+    ///Codigo de verificacion de correo compuesto de 6 digitos aleatorios
     public static VerificationCode generateCode(UserEntity userEntity){
         return VerificationCode.builder()
                 .email(userEntity.getEmail())

@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JwtAuthResponse {
+
     private String token;
+
     private String refreshToken;
+
     private long expiresAt;
 }

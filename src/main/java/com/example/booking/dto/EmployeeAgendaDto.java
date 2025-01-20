@@ -12,10 +12,11 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Setter
-@Getter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 
 public class EmployeeAgendaDto extends BaseDto {
 

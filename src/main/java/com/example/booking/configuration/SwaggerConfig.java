@@ -19,4 +19,6 @@ import org.springframework.context.annotation.Configuration;
         bearerFormat = "JWT"
 )
 public class SwaggerConfig {
+
+    ///Configuracion para authentication JWT en el swagger
 }

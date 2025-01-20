@@ -61,18 +61,14 @@ public class AuthService {
             default -> throw new IllegalArgumentException("Non valid Role");
         };
 
-        ///Crear nuevo usuario con email
+        ///Crear nuevo usuario con email unico
         UserEntity newUser = new UserEntity();
         newUser.setEmail(request.getEmail());
-
-        ///Copiar nombres (que vienen del request)
-        //newUser.setFirstName(request.getFirstName());
-        //newUser.setLastName(request.getLastName());
 
         ///Copiar role que viene del fronted en base a que boton se clicò
         newUser.setRole(roleService.findByName(role));
 
-        ///Email y contraseña
+        ///Email y contraseña codificada
         newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         newUser.setConfirmedEmail(false);
 
@@ -82,6 +78,7 @@ public class AuthService {
                 Client c = new Client();
                 c.setFirstName(request.getFirstName());
                 c.setLastName(request.getLastName());
+                ///Salvar la entidad antes de salvar el nuevo cliente porque sino no lo encuentra en la base de datos para hacer la relacion
                 c = clientService.save(c);
                 newUser.setClient(c);
             }
@@ -104,7 +101,11 @@ public class AuthService {
     }
 
     public JwtAuthResponse login(SignInRequest request) {
+
+        ///Crear token de autenticacion con ususario y contraseña
         var authRequest = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
+
+        ///Controlar si las credenciales con correctas
         try {
             authenticationManager.authenticate(authRequest);
         } catch (BadCredentialsException ex) {
@@ -117,11 +118,12 @@ public class AuthService {
             throw new AuthException(Constants.Errors.INVALID_CREDENTIALS);
         }
 
+        ///General JWT token de usuario autenticado
         String email = request.getEmail();
         HashMap<String, Object> extraClaims = new HashMap<>();
         String token = jwtUtils.generateToken(extraClaims, email);
 
-        //The old refresh token is deleted then a new one is created
+        ///Se crea un nuveo Refresh Token
         refreshTokenRepository.deleteByEmail(email);
         RefreshToken refreshToken = jwtUtils.createRefreshToken(email);
 
@@ -134,14 +136,19 @@ public class AuthService {
     }
 
     public JwtAuthResponse refresh(String token) {
+
+        ///Encontrar si existe el refresh token dado
         Optional<RefreshToken> optionalRefreshToken = refreshTokenRepository.findByToken(token);
+        ///Lanza una excepcion de que no existe si no lo encuentra
         RefreshToken refreshToken = optionalRefreshToken.orElseThrow(
                 () -> AuthException.builder().message(Constants.Errors.INVALID_REFRESH_TOKEN).build()
         );
+        ///Lanaza una excepcion si ya caduco
         if(refreshToken.getExpirationDate().before(new Date())){
             throw AuthException.builder().message(Constants.Errors.INVALID_REFRESH_TOKEN).build();
         }
 
+        ///Generar un token de acceso nuevo
         HashMap<String, Object> extraClaims = new HashMap<>();
         String accessToken = jwtUtils.generateToken(extraClaims, refreshToken.getUser().getEmail());
         return JwtAuthResponse.builder()
@@ -156,12 +163,16 @@ public class AuthService {
     }
 
     public Boolean activateEmail(String code) {
+
         Optional<VerificationCode> optionalVerificationCode = verificationCodeRepository.findByCode(code);
+
+        ///Si el codigo esta presente y no ha expirado
         if(optionalVerificationCode.isPresent()){
             VerificationCode verificationCode = optionalVerificationCode.get();
             if(verificationCode.getExpirationDate().after(new Date(System.currentTimeMillis()))){
                 UserEntity user = verificationCode.getUser();
                 user.setConfirmedEmail(Boolean.TRUE);
+                ///Siempre que se hace un cambio local en una entidad se debe salvar en la BD
                 userService.update(user);
                 return Boolean.TRUE;
             }
@@ -171,15 +182,16 @@ public class AuthService {
 
     public Boolean sendVerificationEmail(String email) {
 
+        ///Encontrar el usuario por su email
         Optional<UserEntity> optionalUser = userService.getRepository().findByEmail(email);
 
         if(optionalUser.isPresent()){
-            //Delete old token
+            ///Delete old token
             verificationCodeRepository.deleteByEmail(email);
-            //Save new token
+            ///Save new token
             VerificationCode verificationCode = VerificationCode.generateCode(optionalUser.get());
             verificationCodeRepository.save(verificationCode);
-            //Send Email
+            ///Send Email
             emailService.sendNewEmail(
                     EmailService.EmailContainer.builder()
                             .to(email)

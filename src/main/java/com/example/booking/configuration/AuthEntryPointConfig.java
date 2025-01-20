@@ -15,6 +15,7 @@ import java.io.IOException;
 
 @Component
 public class AuthEntryPointConfig implements AuthenticationEntryPoint {
+    ///Clase para manejar solicitudes de usuarios no autenticados a recursos protegidos
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {

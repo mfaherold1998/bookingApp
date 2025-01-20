@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
-
 public abstract class BaseDto {
 
     protected Long id;
@@ -24,7 +23,7 @@ public abstract class BaseDto {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "UTC")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    protected LocalDateTime updatedDate;
+    protected LocalDateTime modifiedDate;
 
     protected Boolean deleted;
 }

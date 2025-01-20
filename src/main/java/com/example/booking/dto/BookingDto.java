@@ -10,10 +10,11 @@ import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
-@Setter
-@Getter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 
 public class BookingDto extends BaseDto {
 

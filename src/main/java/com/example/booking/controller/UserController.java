@@ -12,5 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @Tag(name = "Users", description = "The Users API")
 public class UserController extends BaseController<UserEntity, UserDto, UserService> {
+
     public UserController(UserService service) {super(service);}
 }

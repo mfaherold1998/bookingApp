@@ -11,10 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -84,5 +81,9 @@ public class ProprietorController extends BaseController<Proprietor, ProprietorD
     public ResponseEntity<ProprietorDto> update(@NotNull @Valid @RequestBody ProprietorDto dto) {
         return super.update(dto);
     }
+
+    ///Para crear una corporation llamo al save del CorporationController
+
+
 
 }

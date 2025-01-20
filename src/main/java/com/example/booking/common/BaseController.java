@@ -60,6 +60,7 @@ public abstract class BaseController<E extends BaseEntity, D extends BaseDto, S 
         }
         throw new CantDeleteException();
     }
+
     protected Boolean checkCanGetAll(UserEntity currentUser){return Boolean.TRUE;}
     protected Boolean checkCanGet(UserEntity currentUser, Long id){return Boolean.TRUE;}
     protected Boolean checkCanSave(UserEntity currentUser, D toSave){return Boolean.TRUE;}

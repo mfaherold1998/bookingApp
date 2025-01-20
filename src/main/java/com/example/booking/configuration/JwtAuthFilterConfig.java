@@ -35,14 +35,22 @@ public class JwtAuthFilterConfig extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
+        ///Metodo que se ejecuta siempre que se recibe una solicitud
         try {
+            ///Ver si el token de la request es valido
             String jwtToken = jwtUtils.getTokenFromRequest(request);
             jwtUtils.isTokenValid(jwtToken);
+
+            ///Cargar el objeto usuario a partir del subject de la solicitud
             final String userSubject = jwtUtils.extractSubject(jwtToken);
             UserDetails userDetails = userDetailsService.loadUserByUsername(userSubject);
+
+            ///Autenticacion del usuario en el contexto de seguridad
             UsernamePasswordAuthenticationToken authToken = getAuthToken(userDetails);
             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authToken);
+
+            ///Pasar al siguiente filtro en la cadena si existe
             filterChain.doFilter(request, response);
         }
         catch (Exception ex) {
@@ -57,14 +65,12 @@ public class JwtAuthFilterConfig extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) throws ServletException {
-        //I do not filter on /auth/.*
+        ///URLs no afectadas por los filtros
         List<RequestMatcher> requestMatchers = List.of(
                 new RegexRequestMatcher("/v3/api-docs", null),
                 new RegexRequestMatcher("/v3/api-docs/.*", null),
                 new RegexRequestMatcher("/swagger-ui/.*", null),
-                new RegexRequestMatcher("/auth/register", HttpMethod.POST.name()),
-                new RegexRequestMatcher("/auth/login", HttpMethod.POST.name()),
-                new RegexRequestMatcher("/auth/refresh/.*", HttpMethod.GET.name())
+                new RegexRequestMatcher("/auth/.*", HttpMethod.POST.name())
         );
         for (var requestMatcher : requestMatchers)
             if (requestMatcher.matches(request))
@@ -73,6 +79,7 @@ public class JwtAuthFilterConfig extends OncePerRequestFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthToken(UserDetails userDetails) {
+        ///Token de autenticacion para el usuario en el sistema
         return new UsernamePasswordAuthenticationToken(
                 userDetails,
                 null,

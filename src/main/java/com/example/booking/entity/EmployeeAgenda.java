@@ -9,10 +9,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 
 @SQLRestriction("deleted = false")
 @Table(name = "Agendas")

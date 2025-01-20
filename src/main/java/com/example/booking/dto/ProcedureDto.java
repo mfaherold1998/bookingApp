@@ -4,11 +4,11 @@ import com.example.booking.common.BaseDto;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-@Setter
-@Getter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
+@EqualsAndHashCode(callSuper = true)
 public class ProcedureDto extends BaseDto {
 
     @NotNull

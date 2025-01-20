@@ -24,6 +24,7 @@ import java.util.function.Function;
 public class JwtUtils {
 
     private final UserDetailsService userDetailsService;
+
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")

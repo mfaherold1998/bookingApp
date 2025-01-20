@@ -14,7 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 
 @Table(name = "RefreshToken")
-//@SQLRestriction("deleted = false")
 public class RefreshToken {
 
     @Id
