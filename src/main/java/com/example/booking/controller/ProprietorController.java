@@ -1,8 +1,11 @@
 package com.example.booking.controller;
 
 import com.example.booking.common.BaseController;
+import com.example.booking.dto.InvitationRequest;
 import com.example.booking.dto.ProprietorDto;
+import com.example.booking.dto.SignUpRequest;
 import com.example.booking.entity.Proprietor;
+import com.example.booking.service.InvitationService;
 import com.example.booking.service.ProprietorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

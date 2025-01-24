@@ -19,6 +19,17 @@ public class Enums {
 
     @Getter
     @AllArgsConstructor
+    public enum InvitationStatus{
+
+        PENDING("PENDING"),
+        ACCEPTED("ACCEPTED"),
+        REJECTED("REJECTED");
+
+        private final String value;
+    }
+
+    @Getter
+    @AllArgsConstructor
     public enum TokenType{
 
         EMAIL_VERIFICATION("EMAIL_VERIFICATION");

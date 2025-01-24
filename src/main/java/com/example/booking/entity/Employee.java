@@ -41,7 +41,6 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "subdivision_id" )
     private Subdivision subdivision;
 
-    //@JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_procedure", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
     private Set<Procedure> procedures = new HashSet<>();
@@ -50,7 +49,7 @@ public class Employee extends BaseEntity {
     @OneToMany(mappedBy = "employee")
     private Set<Booking> bookings = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = true, unique = true)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, optional = true)
     private UserEntity user;
 }

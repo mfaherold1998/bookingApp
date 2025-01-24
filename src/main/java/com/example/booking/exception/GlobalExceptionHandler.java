@@ -16,10 +16,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new CustomExceptionBody(ex),ex.getHttpStatus());
     }
 
-    @ExceptionHandler({Exception.class, RuntimeException.class})
+    /*@ExceptionHandler({Exception.class, RuntimeException.class})
     public ResponseEntity<CustomExceptionBody> handleGlobalException(Exception ex) {
         log.error(ex.toString());
         CustomException exception = new CustomException(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(new CustomExceptionBody(exception),exception.getHttpStatus());
-    }
+    }*/
 }

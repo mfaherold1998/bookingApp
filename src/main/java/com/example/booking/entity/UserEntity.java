@@ -2,6 +2,8 @@ package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,7 +30,9 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private Long id;
 
     private String email;
+
     private String password;
+
     private Boolean confirmedEmail = Boolean.FALSE;
 
     @JsonManagedReference
@@ -39,6 +43,10 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<VerificationCode> verificationCode;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    private Set<Invitation> invitations;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
@@ -46,14 +54,18 @@ public class UserEntity extends BaseEntity implements UserDetails {
 
     @OneToOne
     @JoinColumn(name = "client_id", nullable = true, unique = true)
+    @JsonBackReference
     private Client client;
 
     @OneToOne
     @JoinColumn(name = "proprietor_id", nullable = true, unique = true)
+    @JsonBackReference
     private Proprietor proprietor;
 
-    //@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
-    //private Employee employee;
+    @OneToOne
+    @JoinColumn(name = "employee_id", nullable = true, unique = true)
+    @JsonBackReference
+    private Employee employee;
 
 
     @Override

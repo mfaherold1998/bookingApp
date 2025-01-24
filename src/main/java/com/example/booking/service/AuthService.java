@@ -56,7 +56,7 @@ public class AuthService {
 
         ///Determina el role para el registro
         String role = switch (request.getRoleName()) {
-            case "user" -> Enums.RoleNames.CLIENT.getValue();
+            case "user" -> Enums.RoleNames.CLIENT.getValue();//TODO cambiar user por client
             case "owner" -> Enums.RoleNames.PROPRIETOR.getValue();
             default -> throw new IllegalArgumentException("Non valid Role");
         };
@@ -102,6 +102,8 @@ public class AuthService {
 
     public JwtAuthResponse login(SignInRequest request) {
 
+        System.out.println("Attempting to authenticate user: " + request.getEmail());
+
         ///Crear token de autenticacion con ususario y contraseña
         var authRequest = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
 
@@ -117,6 +119,8 @@ public class AuthService {
         } catch (AuthenticationException ex) {
             throw new AuthException(Constants.Errors.INVALID_CREDENTIALS);
         }
+
+        System.out.println("Authentication successful for: " + request.getEmail());
 
         ///General JWT token de usuario autenticado
         String email = request.getEmail();

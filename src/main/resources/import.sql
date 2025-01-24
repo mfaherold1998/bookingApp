@@ -1,108 +1,17 @@
-INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (1, '2024-11-18', '09:30:00', '13:30:00');
-INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (2, '2024-11-19', '09:30:00', '13:30:00');
-INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (3, '2024-11-20', '09:30:00', '13:30:00');
-INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (4, '2024-11-21', '09:30:00', '13:30:00');
-INSERT INTO public.agendas (id, work_day, start_hour, end_hour) values (5, '2024-11-22', '09:30:00', '13:30:00');
-
-INSERT INTO public.clients (id, first_name, last_name) values (1,'nanda', 'artigas');
-INSERT INTO public.clients (id, first_name, last_name) values (2,'fede', 'artigas');
-INSERT INTO public.clients (id, first_name, last_name) values (3,'karla', 'artigas');
-INSERT INTO public.clients (id, first_name, last_name) values (4,'marco', 'artigas');
-INSERT INTO public.clients (id, first_name, last_name) values (5,'daniel', 'artigas');
-
 
 INSERT INTO public.roles (id, "name") values (1, 'SUPERADMIN');
 INSERT INTO public.roles (id, "name") values (2, 'PROPRIETOR');
 INSERT INTO public.roles (id, "name") values (3, 'CLIENT');
+INSERT INTO public.roles (id, "name") values (4, 'EMPLOYEE');
 
-INSERT INTO public.corporations (id, "name") values (1, 'corp1');
-INSERT INTO public.corporations (id, "name") values (2, 'corp2');
-INSERT INTO public.corporations (id, "name") values (3, 'corp3');
-INSERT INTO public.corporations (id, "name") values (4, 'corp4');
-INSERT INTO public.corporations (id, "name") values (5, 'corp5');
+INSERT INTO public.proprietors (id, first_name, last_name) values (1, 'Francesca', 'Poliza');
 
-INSERT INTO public.subdivisions (id, corporation_id, "name", adress, contact_info) values (1, 1, 'sub11', 'adress1', 'sub11@gmail.com');
-INSERT INTO public.subdivisions (id, corporation_id, "name", adress, contact_info) values (2, 1, 'sub12', 'adress1', 'sub12@gmail.com');
-INSERT INTO public.subdivisions (id, corporation_id, "name", adress, contact_info) values (3, 1, 'sub13', 'adress1', 'sub13@gmail.com');
-INSERT INTO public.subdivisions (id, corporation_id, "name", adress, contact_info) values (4, 2, 'sub21', 'adress1', 'sub21@gmail.com');
-INSERT INTO public.subdivisions (id, corporation_id, "name", adress, contact_info) values (5, 2, 'sub22', 'adress1', 'sub22@gmail.com');
+INSERT INTO public.corporations (id, "name") values (1, 'Hair Color');
 
-INSERT INTO public.employees (id, agenda_id, subdivision_id, first_name, last_name, email) values (1, 1, 1,'staff1','staff1','staff1@gamil.com');
-INSERT INTO public.employees (id, agenda_id, subdivision_id, first_name, last_name, email) values (2, 2, 1,'staff2','staff2','staff2@gamil.com');
-INSERT INTO public.employees (id, agenda_id, subdivision_id, first_name, last_name, email) values (3, 3, 1,'staff3','staff3','staff3@gamil.com');
-INSERT INTO public.employees (id, agenda_id, subdivision_id, first_name, last_name, email) values (4, 4, 1,'staff4','staff4','staff4@gamil.com');
-INSERT INTO public.employees (id, agenda_id, subdivision_id, first_name, last_name, email) values (5, 5, 1,'staff5','staff5','staff5@gamil.com');
-
-INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) values (1, 'lavado', 5.00, 30);
-INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) values (2, 'secado', 5.00, 10);
-INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) values (3, 'planchado', 10.00, 20);
-INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) values (4, 'color', 45.00, 45);
-INSERT INTO public."procedures" (id,"name", price, estimated_time_in_minutes) values (5, 'corte', 20.00, 20);
-
-INSERT INTO public.proprietors (id, first_name, last_name) values (1, 'owner1', 'owner1');
-INSERT INTO public.proprietors (id, first_name, last_name) values (2, 'owner2', 'owner2');
-INSERT INTO public.proprietors (id, first_name, last_name) values (3, 'owner3', 'owner3');
-INSERT INTO public.proprietors (id, first_name, last_name) values (4, 'owner4', 'owner4');
-INSERT INTO public.proprietors (id, first_name, last_name) values (5, 'owner5', 'owner5');
-
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (1, TRUE, 'email1@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 1, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (2, TRUE, 'email2@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 2, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (3, TRUE, 'email3@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 3, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (4, TRUE, 'email4@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 4, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (5, TRUE, 'email5@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 5, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (6, TRUE, 'email6@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 1)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (7, TRUE, 'email7@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 2)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (8, TRUE, 'email8@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 3)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (9, TRUE, 'email9@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 4)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (10, TRUE,  'email10@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 5)
-
-INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (1, 1, 1, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (2, 2, 2, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (3, 3, 3, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (4, 4, 4, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (5, 5, 5, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
-
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,1);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,2);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,3);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,4);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (1,5);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,1);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,2);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,3);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,4);
---INSERT INTO public.booking_procedure (booking_id, procedure_id) values (2,5);
+INSERT INTO public.subdivisions (id, corporation_id, "name", adress, contact_info) values (1, 1, 'Hair Color Paola', 'Via San Francesco', 'mfaherold1998@gmail.com');
 
 INSERT INTO public.corporation_proprietor (corporation_id, proprietor_id) values (1,1);
-INSERT INTO public.corporation_proprietor (corporation_id, proprietor_id) values (1,2);
-INSERT INTO public.corporation_proprietor (corporation_id, proprietor_id) values (1,3);
-INSERT INTO public.corporation_proprietor (corporation_id, proprietor_id) values (2,4);
-INSERT INTO public.corporation_proprietor (corporation_id, proprietor_id) values (2,5);
 
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (1,1);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (1,2);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (1,3);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (1,4);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (1,5);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (2,1);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (2,2);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (2,3);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (2,4);
-INSERT INTO public.employee_procedure (employee_id , procedure_id) values (2,5);
-
-INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (1,1);
-INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (1,2);
-INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (1,3);
-INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,4);
-INSERT INTO public.subdivision_procedure (subdivision_id , procedure_id) values (2,5);
-
-ALTER SEQUENCE public.agendas_id_seq INCREMENT BY 1 START 6 RESTART 6;
-ALTER SEQUENCE public.bookings_id_seq INCREMENT BY 1 START 6 RESTART 6;
-ALTER SEQUENCE public.clients_id_seq INCREMENT BY 1 START 6 RESTART 6;
-ALTER SEQUENCE public.corporations_id_seq INCREMENT BY 1 START 6 RESTART 6;
-ALTER SEQUENCE public.employees_id_seq INCREMENT BY 1 START 6 RESTART 6;
-ALTER SEQUENCE public.procedures_id_seq INCREMENT BY 1 START 6	RESTART 6;
-ALTER SEQUENCE public.proprietors_id_seq INCREMENT BY 1 START 6 RESTART 6;
-ALTER SEQUENCE public.subdivisions_id_seq INCREMENT BY 1 START 6 RESTART 6;
-ALTER SEQUENCE public.users_id_seq INCREMENT BY 1 START 11 RESTART 11;
-ALTER SEQUENCE public.roles_id_seq INCREMENT BY 1 START 4 RESTART 4;
+ALTER SEQUENCE public.roles_id_seq INCREMENT BY 1 START 5 RESTART 5;
+ALTER SEQUENCE public.corporations_id_seq INCREMENT BY 1 START 2 RESTART 2;
+ALTER SEQUENCE public.subdivisions_id_seq INCREMENT BY 1 START 2 RESTART 2;
