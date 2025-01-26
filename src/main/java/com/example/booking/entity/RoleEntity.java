@@ -4,16 +4,14 @@ import com.example.booking.common.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Setter
+@Getter
+@Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

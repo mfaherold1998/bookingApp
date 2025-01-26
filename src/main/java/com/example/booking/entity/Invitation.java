@@ -3,30 +3,31 @@ package com.example.booking.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.SQLRestriction;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Builder
+@Entity
 @Setter
 @Getter
-@Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Table(name = "RefreshToken")
-//@SQLRestriction("deleted = false")
-public class RefreshToken {
+@Table(name = "Invitations")
+public class Invitation {
 
     @Id
     private String token;
 
-    private Date expirationDate;
+    @OneToOne
+    @JoinColumn(name = "subdivision_id", nullable = true, unique = true)
+    private Subdivision subdivision;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    private String email;
+    private String status;
+
+    private LocalDateTime expirationDate;
 }

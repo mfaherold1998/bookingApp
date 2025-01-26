@@ -10,6 +10,7 @@ import org.hibernate.annotations.SQLRestriction;
 import java.util.HashSet;
 import java.util.Set;
 
+@Builder
 @Entity
 @Getter
 @Setter
@@ -36,6 +37,8 @@ public class Subdivision extends BaseEntity {
     @JsonBackReference
     @OneToMany(mappedBy = "subdivision")
     private Set<Employee> employees = new HashSet<>();
+
+
 
     @JsonBackReference
     @ManyToOne

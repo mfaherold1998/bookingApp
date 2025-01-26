@@ -13,6 +13,7 @@ INSERT INTO public.clients (id, first_name, last_name) values (5,'daniel', 'arti
 
 INSERT INTO public.roles (id, "name") values (1, 'SUPERADMIN');
 INSERT INTO public.roles (id, "name") values (2, 'PROPRIETOR');
+INSERT INTO public.roles (id, "name") values (4, 'EMPLOYEE');
 INSERT INTO public.roles (id, "name") values (3, 'CLIENT');
 
 INSERT INTO public.corporations (id, "name") values (1, 'corp1');
@@ -45,16 +46,16 @@ INSERT INTO public.proprietors (id, first_name, last_name) values (3, 'owner3', 
 INSERT INTO public.proprietors (id, first_name, last_name) values (4, 'owner4', 'owner4');
 INSERT INTO public.proprietors (id, first_name, last_name) values (5, 'owner5', 'owner5');
 
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (1, TRUE, 'email1@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 1, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (2, TRUE, 'email2@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 2, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (3, TRUE, 'email3@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 3, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (4, TRUE, 'email4@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 4, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (5, TRUE, 'email5@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 5, NULL)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (6, TRUE, 'email6@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 1)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (7, TRUE, 'email7@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 2)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (8, TRUE, 'email8@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 3)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (9, TRUE, 'email9@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 4)
-INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id) values (10, TRUE,  'email10@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 5)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (1, TRUE, 'email1@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 1, NULL, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (2, TRUE, 'email2@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 2, NULL, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (3, TRUE, 'email3@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 3, NULL, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (4, TRUE, 'email4@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 4, NULL, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (5, TRUE, 'email5@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 3, 5, NULL, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (6, TRUE, 'email6@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 1, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (7, TRUE, 'email7@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 2, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (8, TRUE, 'email8@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 3, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (9, TRUE, 'email9@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 4, NULL)
+INSERT INTO public.users (id, confirmed_email, email, password, role_id, client_id, proprietor_id, employee_id) values (10, TRUE,  'email10@gmail.com', '$2a$10$wzTUBfsDb7mvFI6M8E7Eu.qd2MCMyM6FDOYEDmD1MG5b.y4lmErXS', 2, NULL, 5, NULL)
 
 INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (1, 1, 1, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');
 INSERT INTO public.bookings (id, employee_id, client_id, procedure_id, booking_day, start_time, end_time, status) values (2, 2, 2, 1, '2024-11-22', '09:30:00', '13:30:00', 'PENDING');

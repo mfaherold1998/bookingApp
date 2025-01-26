@@ -4,10 +4,7 @@ import com.example.booking.common.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,8 +13,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+//@EqualsAndHashCode(callSuper = true)
+//@Data
+@Setter
+@Getter
+@Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,6 +42,8 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<VerificationCode> verificationCode;
 
+
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
@@ -55,8 +57,9 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @JoinColumn(name = "proprietor_id", nullable = true, unique = true)
     private Proprietor proprietor;
 
-    //@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = true)
-    //private Employee employee;
+    @OneToOne
+    @JoinColumn(name = "employee_id", nullable = true, unique = true)
+    private Employee employee;
 
 
     @Override

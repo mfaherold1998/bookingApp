@@ -11,7 +11,19 @@ public class Enums {
 
         SUPERADMIN("SUPERADMIN"),
         PROPRIETOR("PROPRIETOR"),
+        EMPLOYEE("EMPLOYEE"),//User&Employee
         CLIENT("CLIENT");
+
+        private final String value;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public enum InvitationStatus{
+
+        PENDING("PENDING"),
+        ACCEPTED("ACCEPTED"),
+        REJECTED("REJECTED");
 
         private final String value;
     }

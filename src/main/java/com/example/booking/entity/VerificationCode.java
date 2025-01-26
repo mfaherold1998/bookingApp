@@ -9,12 +9,15 @@ import org.hibernate.annotations.SQLRestriction;
 import java.util.Date;
 import java.util.Random;
 
+
+//@EqualsAndHashCode(callSuper = true)
+//@Data
+@Setter
+@Getter
 @Builder
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Table(name = "VerificationCode")
 //@SQLRestriction("deleted = false")
 public class VerificationCode {

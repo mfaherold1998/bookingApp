@@ -11,8 +11,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Getter
 @Setter
+@Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 

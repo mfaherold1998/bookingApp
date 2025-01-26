@@ -10,8 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
 @Setter
+@Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -49,7 +50,6 @@ public class Employee extends BaseEntity {
     @OneToMany(mappedBy = "employee")
     private Set<Booking> bookings = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = true, unique = true)
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, optional = true)
     private UserEntity user;
 }

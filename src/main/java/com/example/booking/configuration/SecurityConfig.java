@@ -32,7 +32,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(AbstractHttpConfigurer::disable) //Not needed since we use stateless JWT token authentication
+        HttpSecurity httpSecurity = http.csrf(AbstractHttpConfigurer::disable) //Not needed since we use stateless JWT token authentication
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authEntryPointConfiguration))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
@@ -47,6 +47,11 @@ public class SecurityConfig {
                                 new RegexRequestMatcher("/auth/login", HttpMethod.POST.name()),
                                 new RegexRequestMatcher("/auth/refresh/.*", HttpMethod.GET.name())
                         ).permitAll()
+                )
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(new RegexRequestMatcher("/api/invitations/send", HttpMethod.POST.name())).hasAuthority(PROPRIETOR.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/api/invitations/accept/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/api/invitations/reject/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
                 )
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(new RegexRequestMatcher("/role/get/.*", HttpMethod.GET.name())).hasAuthority(SUPERADMIN.getValue())
