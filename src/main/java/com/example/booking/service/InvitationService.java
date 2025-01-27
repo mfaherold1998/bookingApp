@@ -33,6 +33,7 @@ public class InvitationService {
     private final EmployeeRepository employeeRepository;
     private final EmailService emailService;
     private final RoleService roleService;
+    private final ProprietorService proprietorService;
 
     public Boolean sendInvitation (InvitationRequest request){
 
@@ -49,6 +50,7 @@ public class InvitationService {
                 .user(invitedUser)
                 .token(invitationToken)
                 .status(Enums.InvitationStatus.PENDING.getValue())
+                .proprietor(proprietorService.getEntityById(request.getHostProprietor()))
                 .expirationDate(LocalDateTime.now().plusDays(7))
                 .build();
 
@@ -99,7 +101,7 @@ public class InvitationService {
 
         ///Comprobar si ya esta registrado
         Employee employee = invitation.getUser().getEmployee();
-        if (employee != null){return Boolean.TRUE;}
+        if (employee != null){return Boolean.TRUE;}//TODO Enviar un mensaje mas especifico de que ya esta registrado
 
         ///Save a new employee associated with the subdivision
         Employee newEmployee = Employee.builder()
@@ -117,8 +119,26 @@ public class InvitationService {
         ///Ahora este user tiene instancias en cliente y empleado
         userRepository.save(newUser);
 
-        //TODO enviar notificacion al que envio la invitacion de que fue aceptada
+        ///Enviar notificacion al que envio la invitacion de que fue aceptada
+        System.out.println("Se va a enviar correo");
+        String subject = "Notification of acceptance of invitation.";
+        String text = String.format(
+                "Dear owner,\n\n" +
+                        "We are pleased to inform you that the user %s has accepted your invitation to work in your company." +
+                        "Best regards,\n" +
+                        "Assistance",
+                invitation.getUser().getEmail()
+        );
 
+        EmailService.EmailContainer email = EmailService.EmailContainer.builder()
+                .to(invitation.getProprietor().getUser().getEmail())
+                .subject(subject)
+                .text(text)
+                .build();
+
+        System.out.println("OWNER EMAIL: "+invitation.getProprietor().getUser().getEmail());
+
+        emailService.sendNewEmail(email);
 
 
         return Boolean.TRUE;
@@ -137,7 +157,23 @@ public class InvitationService {
         invitation.setStatus(Enums.InvitationStatus.REJECTED.getValue());
         invitationRepository.saveAndFlush(invitation);
 
-        //TODO notificar que la notificacion fue rechazada
+        ///Enviar notificacion al que envio la invitacion de que fue rechazada
+        String subject = "Notification of rejection of invitation.";
+        String text = String.format(
+                "Dear owner,\n\n" +
+                        "We are sorry to inform you that the user %s has rejected your invitation to work in your company." +
+                        "Best regards,\n" +
+                        "Assistance",
+                invitation.getUser().getEmail()
+        );
+
+        EmailService.EmailContainer email = EmailService.EmailContainer.builder()
+                .to(invitation.getProprietor().getUser().getEmail())
+                .subject(subject)
+                .text(text)
+                .build();
+
+        emailService.sendNewEmail(email);
 
         return Boolean.TRUE;
     }

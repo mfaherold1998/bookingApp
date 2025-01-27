@@ -38,8 +38,6 @@ public class Subdivision extends BaseEntity {
     @OneToMany(mappedBy = "subdivision")
     private Set<Employee> employees = new HashSet<>();
 
-
-
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "corporation_id")

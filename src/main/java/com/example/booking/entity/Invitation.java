@@ -20,12 +20,16 @@ public class Invitation {
     private String token;
 
     @OneToOne
-    @JoinColumn(name = "subdivision_id", nullable = true, unique = true)
+    @JoinColumn(name = "subdivision_id", nullable = false)
     private Subdivision subdivision;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "proprietor_id"/*, nullable = false*/)
+    private Proprietor proprietor;
 
     private String status;
 
