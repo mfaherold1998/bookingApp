@@ -56,9 +56,14 @@ public class AuthService {
         }
 
         ///Determina el role para el registro
-        String role = switch (request.getRoleName()) {
-            case "user" -> Enums.RoleNames.CLIENT.getValue();
-            case "owner" -> Enums.RoleNames.PROPRIETOR.getValue();
+        Set<String> roles = new HashSet<>();
+
+        switch (request.getRoleName()) {
+            case "user" -> roles.add(Enums.RoleNames.CLIENT.getValue());
+            case "owner" -> roles.addAll(Arrays.asList(
+                    Enums.RoleNames.CLIENT.getValue(),
+                    Enums.RoleNames.PROPRIETOR.getValue()
+            ));
             default -> throw new IllegalArgumentException("Non valid Role");
         };
 
@@ -70,31 +75,29 @@ public class AuthService {
         //newUser.setFirstName(request.getFirstName());
         //newUser.setLastName(request.getLastName());
 
-        ///Copiar role que viene del fronted en base a que boton se clicò
-        newUser.setRole(roleService.findByName(role));
+        ///Añadir al set los roles correspondientes
+        //newUser.getRoles().add(roleService.findByName(roles));
+        roles.forEach(role -> newUser.getRoles().add(roleService.findByName(role)));
 
         ///Email y contraseña
         newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         newUser.setConfirmedEmail(false);
 
         ///Crear cliente o proprietor asociado
-        switch (role) {
-            case "CLIENT" -> {
-                Client c = new Client();
-                c.setFirstName(request.getFirstName());
-                c.setLastName(request.getLastName());
-                c = clientService.save(c);
-                newUser.setClient(c);
-            }
-            case "PROPRIETOR" -> {
-                Proprietor p = new Proprietor();
-                p.setFirstName(request.getFirstName());
-                p.setLastName(request.getLastName());
-                p = proprietorService.save(p);
-                newUser.setProprietor(p);
-            }
-            default -> throw new IllegalArgumentException("Non valid Role");
-        };
+        if(roles.contains(Enums.RoleNames.CLIENT.getValue())){
+            Client c = new Client();
+            c.setFirstName(request.getFirstName());
+            c.setLastName(request.getLastName());
+            c = clientService.save(c);
+            newUser.setClient(c);
+        }
+        if(roles.contains(Enums.RoleNames.PROPRIETOR.getValue())){
+            Proprietor p = new Proprietor();
+            p.setFirstName(request.getFirstName());
+            p.setLastName(request.getLastName());
+            p = proprietorService.save(p);
+            newUser.setProprietor(p);
+        }
 
         userService.save(newUser);
 

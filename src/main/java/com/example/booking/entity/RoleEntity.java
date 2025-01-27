@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -24,9 +25,9 @@ public class RoleEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "role",fetch = FetchType.EAGER)
-    private Set<UserEntity> user;
+    @JsonBackReference
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserEntity> users = new HashSet<>();
 
     private String name;
 }

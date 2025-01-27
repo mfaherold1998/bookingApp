@@ -14,6 +14,9 @@ public class InvitationRequest {
     @NotNull
     private Long subdivision;
 
+    @NotNull
+    private Long hostProprietor;
+
     @NotBlank
     private String invitedUserEmail;
 

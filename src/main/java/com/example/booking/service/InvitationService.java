@@ -113,11 +113,12 @@ public class InvitationService {
         ///Conectar employee con la tabla UserEntity y guardar en la BD
         UserEntity newUser = invitation.getUser();
         newUser.setEmployee(newEmployee);
-        newUser.setRole(roleService.findByName(Enums.RoleNames.EMPLOYEE.getValue()));
+        newUser.getRoles().add((roleService.findByName(Enums.RoleNames.EMPLOYEE.getValue())));
         ///Ahora este user tiene instancias en cliente y empleado
         userRepository.save(newUser);
 
         //TODO enviar notificacion al que envio la invitacion de que fue aceptada
+
 
 
         return Boolean.TRUE;

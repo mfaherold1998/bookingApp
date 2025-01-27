@@ -42,12 +42,10 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<VerificationCode> verificationCode;
 
-
-
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private RoleEntity role;
+    @JsonManagedReference
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "client_id", nullable = true, unique = true)
@@ -65,7 +63,7 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @Override
     public Collection< ? extends GrantedAuthority > getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(getRole().getName()));
+        getRoles().forEach(r -> authorities.add(new SimpleGrantedAuthority(r.getName())));
         return authorities;
     }
 
