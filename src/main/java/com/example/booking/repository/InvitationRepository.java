@@ -14,6 +14,7 @@ public interface InvitationRepository extends JpaRepository<Invitation, Long> {
     Optional<Invitation> findByStatus(String status);
     Optional<Invitation> findByExpirationDate(LocalDateTime expDate);
     Optional<Invitation> findBySubdivisionIdAndUserId(Long subdivisionId, Long userId);
+    Optional<Invitation> findByUpdatedDate(LocalDateTime dateTime);
 
     void deleteByStatus(String email);
 }

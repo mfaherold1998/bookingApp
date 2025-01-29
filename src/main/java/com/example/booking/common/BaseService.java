@@ -53,7 +53,7 @@ public abstract class BaseService<
     }
 
     public E update(E entity) {
-        entity.setModifiedDate(LocalDateTime.now());
+        entity.setUpdatedDate(LocalDateTime.now());
         return repository.save(entity);
     }
 

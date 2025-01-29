@@ -31,7 +31,9 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private Long id;
 
     private String email;
+
     private String password;
+
     private Boolean confirmedEmail = Boolean.FALSE;
 
     @JsonManagedReference

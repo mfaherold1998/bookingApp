@@ -1,8 +1,10 @@
 package com.example.booking.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.example.booking.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +16,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 @Table(name = "Invitations")
-public class Invitation {
+@SQLRestriction("deleted = false")
+public class Invitation extends BaseEntity {
 
     @Id
     private String token;

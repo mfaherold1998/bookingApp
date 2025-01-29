@@ -37,4 +37,14 @@ public class Enums {
         private final String value;
     }
 
+    @Getter
+    @AllArgsConstructor
+    public enum NotificationType{
+
+        ACCEPTANCE("accepted"),
+        REJECTION("rejected");
+
+        private final String value;
+    }
+
 }

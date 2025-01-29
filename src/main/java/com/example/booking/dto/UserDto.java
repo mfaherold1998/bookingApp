@@ -10,7 +10,13 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class UserDto extends BaseDto {
+
     @NotBlank
     private String email;
+
+    private String password;
+
+    private Boolean confirmedEmail;
+
     private Set<RoleDto> roles;
 }

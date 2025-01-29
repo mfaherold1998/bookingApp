@@ -20,7 +20,7 @@ public class BaseEntity {
 
     @UpdateTimestamp
     @Column(name = "last_update_at")
-    protected LocalDateTime modifiedDate = LocalDateTime.now();
+    protected LocalDateTime updatedDate = LocalDateTime.now();
 
     @Column(name = "deleted", columnDefinition = "BOOLEAN DEFAULT FALSE")
     protected Boolean isDeleted = Boolean.FALSE;
