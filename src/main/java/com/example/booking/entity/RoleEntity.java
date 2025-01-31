@@ -25,9 +25,9 @@ public class RoleEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference
+    /*@JsonBackReference
     @ManyToMany(mappedBy = "roles")
-    private Set<UserEntity> users = new HashSet<>();
+    private Set<UserEntity> users = new HashSet<>();*/
 
     private String name;
 }

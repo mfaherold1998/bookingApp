@@ -33,6 +33,7 @@ public class VerificationCode {
     private UserEntity user;
 
     private String email;
+
     private Enums.TokenType type;
 
     public static VerificationCode generateCode(UserEntity userEntity){

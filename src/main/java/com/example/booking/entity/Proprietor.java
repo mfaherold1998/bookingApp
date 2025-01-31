@@ -30,9 +30,9 @@ public class Proprietor extends BaseEntity {
     @Column
     private String lastName;
 
-    @JsonBackReference
+    /*@JsonBackReference
     @ManyToMany(mappedBy = "proprietors")
-    private Set<Corporation> corporations = new HashSet<>();
+    private Set<Corporation> corporations = new HashSet<>();*/
 
     @OneToOne(mappedBy = "proprietor", cascade = CascadeType.ALL, optional = true)
     private UserEntity user;

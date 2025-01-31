@@ -11,8 +11,18 @@ public class Enums {
 
         SUPERADMIN("SUPERADMIN"),
         PROPRIETOR("PROPRIETOR"),
-        EMPLOYEE("EMPLOYEE"),//User&Employee
+        EMPLOYEE("EMPLOYEE"),
         CLIENT("CLIENT");
+
+        private final String value;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public enum BookingStatus{
+        PENDING("PENDING"),
+        ONGOING("ONGOING"),
+        PASSED("PASSED");
 
         private final String value;
     }

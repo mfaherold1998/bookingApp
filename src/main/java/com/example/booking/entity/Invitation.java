@@ -22,7 +22,7 @@ public class Invitation extends BaseEntity {
     @Id
     private String token;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "subdivision_id", nullable = false)
     private Subdivision subdivision;
 

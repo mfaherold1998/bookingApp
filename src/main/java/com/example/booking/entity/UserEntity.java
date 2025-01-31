@@ -36,12 +36,12 @@ public class UserEntity extends BaseEntity implements UserDetails {
 
     private Boolean confirmedEmail = Boolean.FALSE;
 
+    ///Se cambio a LAZY de EAGER
     @JsonManagedReference
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RefreshToken> refreshTokens;
-
     @JsonManagedReference
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<VerificationCode> verificationCode;
 
     @JsonManagedReference

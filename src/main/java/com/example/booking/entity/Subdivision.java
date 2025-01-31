@@ -34,9 +34,9 @@ public class Subdivision extends BaseEntity {
     @Column(name = "contact_info")
     private String email;
 
-    @JsonBackReference
+    /*@JsonBackReference
     @OneToMany(mappedBy = "subdivision")
-    private Set<Employee> employees = new HashSet<>();
+    private Set<Employee> employees = new HashSet<>();*/
 
     @JsonBackReference
     @ManyToOne

@@ -46,9 +46,9 @@ public class Employee extends BaseEntity {
     @JoinTable(name = "employee_procedure", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "procedure_id"))
     private Set<Procedure> procedures = new HashSet<>();
 
-    @JsonManagedReference
+    /*@JsonManagedReference
     @OneToMany(mappedBy = "employee")
-    private Set<Booking> bookings = new HashSet<>();
+    private Set<Booking> bookings = new HashSet<>();*/
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, optional = true)
     private UserEntity user;

@@ -29,9 +29,9 @@ public class Client extends BaseEntity {
     @Column
     private String lastName;
 
-    @JsonManagedReference
+    /*@JsonManagedReference
     @OneToMany(mappedBy = "client")
-    private Set<Booking> bookings = new HashSet<>();
+    private Set<Booking> bookings = new HashSet<>();*/
 
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, optional = true)
     private UserEntity user;

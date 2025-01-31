@@ -1,6 +1,7 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
+import com.example.booking.utils.Enums;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -41,7 +42,10 @@ public class Booking extends BaseEntity {
     private Client client;
 
     private LocalDate bookingDay;
+
     private LocalTime startTime;
+
     private LocalTime endTime;
-    private String status = "Pending"; //(Pending, Booked, Ongoing, Passed)
+
+    private String status;
 }

@@ -32,9 +32,9 @@ public class Corporation extends BaseEntity {
     @JoinTable(name = "corporation_proprietor", joinColumns = @JoinColumn(name = "corporation_id"), inverseJoinColumns = @JoinColumn(name = "proprietor_id"))
     private Set<Proprietor> proprietors = new HashSet<>();
 
-    @JsonManagedReference
+    /*@JsonManagedReference
     @OneToMany(mappedBy = "corporation")
-    private Set<Subdivision> subdivisions = new HashSet<>();
+    private Set<Subdivision> subdivisions = new HashSet<>();*/
 
 
 }

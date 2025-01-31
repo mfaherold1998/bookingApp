@@ -38,11 +38,11 @@ public class Procedure extends BaseEntity {
     @ManyToMany(mappedBy = "procedures")
     private Set<Employee> employees = new HashSet<>();*/
 
-    @JsonBackReference
+    /*@JsonBackReference
     @ManyToMany(mappedBy = "procedures")
-    private Set<Subdivision> subdivisions = new HashSet<>();
+    private Set<Subdivision> subdivisions = new HashSet<>();*/
 
-    @JsonManagedReference
+    /*@JsonManagedReference
     @OneToMany(mappedBy = "procedure")
-    private Set<Booking> bookings = new HashSet<>();
+    private Set<Booking> bookings = new HashSet<>();*/
 }
