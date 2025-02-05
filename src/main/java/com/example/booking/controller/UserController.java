@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-@Tag(name = "Users", description = "The Users API")
+
+@Tag(name = "Users", description = "API for managing users information.")
 public class UserController extends BaseController<UserEntity, UserDto, UserService> {
     public UserController(UserService service) {super(service);}
 }

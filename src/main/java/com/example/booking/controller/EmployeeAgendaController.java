@@ -20,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/agendas")
-@Tag(name = "EmployeeAgendas", description = "The EmployeeAgendas API")
+
+@Tag(name = "Employee Agendas", description = "API for scheduling and managing the employees agendas within the company.")
 public class EmployeeAgendaController extends BaseController<EmployeeAgenda, EmployeeAgendaDto, EmployeeAgendaService> {
 
     public EmployeeAgendaController(EmployeeAgendaService service) {
@@ -28,10 +29,10 @@ public class EmployeeAgendaController extends BaseController<EmployeeAgenda, Emp
     }
 
     @Operation(
-            summary = "Fetch all EmployeeAgendas",
-            description = "Fetches all EmployeeAgenda entities and their data from data source")
+            summary = "Fetch all Employee Agendas",
+            description = "Retrieves a list of all employee agendas registered in the company.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<EmployeeAgendaDto>> getAll() {
@@ -39,10 +40,10 @@ public class EmployeeAgendaController extends BaseController<EmployeeAgenda, Emp
     }
 
     @Operation(
-            summary = "Fetch a EmployeeAgenda by Id",
-            description = "Fetches a EmployeeAgenda entity and their data from data source by an specific Id")
+            summary = "Fetch a Employee Agenda by Id",
+            description = "Retrieves the details of a specific agenda using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<EmployeeAgendaDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class EmployeeAgendaController extends BaseController<EmployeeAgenda, Emp
     }
 
     @Operation(
-            summary = "Adds a EmployeeAgenda",
-            description = "Adds a EmployeeAgenda to the list of EmployeeAgendas in the data source")
+            summary = "Create a new Employee Agenda",
+            description = "Creates a new agenda in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a EmployeeAgenda"),
-            @ApiResponse(responseCode = "500", description = "invalid EmployeeAgenda cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Bad Credentials")
     })
     @Override
     public ResponseEntity<EmployeeAgendaDto> save(@NotNull @Valid @RequestBody EmployeeAgendaDto dto) {
@@ -62,11 +63,11 @@ public class EmployeeAgendaController extends BaseController<EmployeeAgenda, Emp
     }
 
     @Operation(
-            summary = "Delete a EmployeeAgenda",
-            description = "Delete a EmployeeAgenda by a specific id from the list of EmployeeAgendas in the data source")
+            summary = "Delete a Employee Agenda",
+            description = "Marks a specific agenda as deleted without permanently removing it from the system. The agenda is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a EmployeeAgenda"),
-            @ApiResponse(responseCode = "404", description = "there is not EmployeeAgenda with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Employee Agenda")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class EmployeeAgendaController extends BaseController<EmployeeAgenda, Emp
 
     @Operation(
             summary = "Update a EmployeeAgenda",
-            description = "Update a EmployeeAgenda by a specific id from the list of EmployeeAgendas in the data source")
+            description = "Updates the details of an existing agenda. Requires the unique ID of the agenda and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a EmployeeAgenda"),
-            @ApiResponse(responseCode = "404", description = "there is not EmployeeAgenda with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Employee Agenda")
     })
     @Override
     public ResponseEntity<EmployeeAgendaDto> update(@NotNull @Valid @RequestBody EmployeeAgendaDto dto) {

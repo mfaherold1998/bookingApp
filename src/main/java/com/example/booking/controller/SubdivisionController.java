@@ -20,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/subdivisions")
-@Tag(name = "Subdivisions", description = "The Subdivisions API")
+
+@Tag(name = "Subdivisions", description = "API for managing subsidiaries of corporations information.")
 public class SubdivisionController extends BaseController<Subdivision, SubdivisionDto, SubdivisionService> {
 
     public SubdivisionController(SubdivisionService service) {
@@ -29,9 +30,9 @@ public class SubdivisionController extends BaseController<Subdivision, Subdivisi
 
     @Operation(
             summary = "Fetch all Subdivisions",
-            description = "Fetches all Subdivision entities and their data from data source")
+            description = "Retrieves a list of all subdivisions registered in the system.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<SubdivisionDto>> getAll() {
@@ -40,9 +41,9 @@ public class SubdivisionController extends BaseController<Subdivision, Subdivisi
 
     @Operation(
             summary = "Fetch a Subdivision by Id",
-            description = "Fetches a Subdivision entity and their data from data source by an specific Id")
+            description = "Retrieves the details of a specific subdivision using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<SubdivisionDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class SubdivisionController extends BaseController<Subdivision, Subdivisi
     }
 
     @Operation(
-            summary = "Adds a Subdivision",
-            description = "Adds a Subdivision to the list of Subdivisions in the data source")
+            summary = "Create a new Subdivision",
+            description = "Creates a new subdivision in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a Subdivision"),
-            @ApiResponse(responseCode = "500", description = "invalid Subdivision cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Bad Credentials")
     })
     @Override
     public ResponseEntity<SubdivisionDto> save(@NotNull @Valid @RequestBody SubdivisionDto dto) {
@@ -63,10 +64,10 @@ public class SubdivisionController extends BaseController<Subdivision, Subdivisi
 
     @Operation(
             summary = "Delete a Subdivision",
-            description = "Delete a Subdivision by a specific id from the list of Subdivisions in the data source")
+            description = "Marks a specific subdivision as deleted without permanently removing it from the system. The subdivision is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a Subdivision"),
-            @ApiResponse(responseCode = "404", description = "there is not Subdivision with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Subdivision")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class SubdivisionController extends BaseController<Subdivision, Subdivisi
 
     @Operation(
             summary = "Update a Subdivision",
-            description = "Update a Subdivision by a specific id from the list of Subdivisions in the data source")
+            description = "Updates the details of an existing subdivision. Requires the unique ID of the subdivision and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a Subdivision"),
-            @ApiResponse(responseCode = "404", description = "there is not Subdivision with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Subdivision")
     })
     @Override
     public ResponseEntity<SubdivisionDto> update(@NotNull @Valid @RequestBody SubdivisionDto dto) {

@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/propietors")
-@Tag(name = "Proprietors", description = "The Proprietors API")
+@RequestMapping("/api/proprietors")
+
+@Tag(name = "Proprietors", description = "API for managing corporation owners information.")
 public class ProprietorController extends BaseController<Proprietor, ProprietorDto, ProprietorService> {
 
     public ProprietorController(ProprietorService service) {
@@ -29,9 +30,9 @@ public class ProprietorController extends BaseController<Proprietor, ProprietorD
 
     @Operation(
             summary = "Fetch all Proprietors",
-            description = "Fetches all Proprietor entities and their data from data source")
+            description = "Retrieves a list of all proprietors registered in the system.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<ProprietorDto>> getAll() {
@@ -40,9 +41,9 @@ public class ProprietorController extends BaseController<Proprietor, ProprietorD
 
     @Operation(
             summary = "Fetch a Proprietor by Id",
-            description = "Fetches a Proprietor entity and their data from data source by an specific Id")
+            description = "Retrieves the details of a specific proprietor using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<ProprietorDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class ProprietorController extends BaseController<Proprietor, ProprietorD
     }
 
     @Operation(
-            summary = "Adds a Proprietor",
-            description = "Adds a Proprietor to the list of Proprietors in the data source")
+            summary = "Create a new Proprietor",
+            description = "Creates a new proprietor in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a Proprietor"),
-            @ApiResponse(responseCode = "500", description = "invalid Proprietor cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Bad Credentials")
     })
     @Override
     public ResponseEntity<ProprietorDto> save(@NotNull @Valid @RequestBody ProprietorDto dto) {
@@ -63,10 +64,10 @@ public class ProprietorController extends BaseController<Proprietor, ProprietorD
 
     @Operation(
             summary = "Delete a Proprietor",
-            description = "Delete a Proprietor by a specific id from the list of Proprietors in the data source")
+            description = "Marks a specific proprietor as deleted without permanently removing it from the system. The proprietor is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a Proprietor"),
-            @ApiResponse(responseCode = "404", description = "there is not Proprietor with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Proprietor")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class ProprietorController extends BaseController<Proprietor, ProprietorD
 
     @Operation(
             summary = "Update a Proprietor",
-            description = "Update a Proprietor by a specific id from the list of Proprietors in the data source")
+            description = "Updates the details of an existing proprietor. Requires the unique ID of the proprietor and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a Proprietor"),
-            @ApiResponse(responseCode = "404", description = "there is not Proprietor with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Proprietor")
     })
     @Override
     public ResponseEntity<ProprietorDto> update(@NotNull @Valid @RequestBody ProprietorDto dto) {

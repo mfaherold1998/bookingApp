@@ -23,6 +23,6 @@ public class BaseEntity {
     protected LocalDateTime updatedDate = LocalDateTime.now();
 
     @Column(name = "deleted", columnDefinition = "BOOLEAN DEFAULT FALSE")
-    protected Boolean isDeleted = Boolean.FALSE;
+    protected Boolean deleted = Boolean.FALSE;
 
 }

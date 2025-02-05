@@ -20,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/corporations")
-@Tag(name = "Corporations", description = "The Corporations API")
+
+@Tag(name = "Corporations", description = "API for managing corporations information.")
 public class CorporationController extends BaseController<Corporation, CorporationDto, CorporationService> {
 
     public CorporationController(CorporationService service) {
@@ -29,9 +30,9 @@ public class CorporationController extends BaseController<Corporation, Corporati
 
     @Operation(
             summary = "Fetch all Corporations",
-            description = "Fetches all Corporation entities and their data from data source")
+            description = "Retrieves a list of all corporations registered in the system.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<CorporationDto>> getAll() {
@@ -40,9 +41,9 @@ public class CorporationController extends BaseController<Corporation, Corporati
 
     @Operation(
             summary = "Fetch a Corporation by Id",
-            description = "Fetches a Corporation entity and their data from data source by an specific Id")
+            description = "Retrieves the details of a specific corporation using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<CorporationDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class CorporationController extends BaseController<Corporation, Corporati
     }
 
     @Operation(
-            summary = "Adds a Corporation",
-            description = "Adds a Corporation to the list of Corporations in the data source")
+            summary = "Create a new Corporation",
+            description = "Creates a new corporation in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a Corporation"),
-            @ApiResponse(responseCode = "500", description = "invalid Corporation cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Bad Credentials")
     })
     @Override
     public ResponseEntity<CorporationDto> save(@NotNull @Valid @RequestBody CorporationDto dto) {
@@ -63,10 +64,10 @@ public class CorporationController extends BaseController<Corporation, Corporati
 
     @Operation(
             summary = "Delete a Corporation",
-            description = "Delete a Corporation by a specific id from the list of Corporations in the data source")
+            description = "Marks a specific appointment as deleted without permanently removing it from the system. The booking is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a Corporation"),
-            @ApiResponse(responseCode = "404", description = "there is not Corporation with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Corporation")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class CorporationController extends BaseController<Corporation, Corporati
 
     @Operation(
             summary = "Update a Corporation",
-            description = "Update a Corporation by a specific id from the list of Corporations in the data source")
+            description = "Updates the details of an existing corporation. Requires the unique ID of the corporation and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a Corporation"),
-            @ApiResponse(responseCode = "404", description = "there is not Corporation with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Corporation")
     })
     @Override
     public ResponseEntity<CorporationDto> update(@NotNull @Valid @RequestBody CorporationDto dto) {

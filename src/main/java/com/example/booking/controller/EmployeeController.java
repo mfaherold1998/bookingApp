@@ -20,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
-@Tag(name = "Employees", description = "The Employees API")
+
+@Tag(name = "Employees", description = "API for managing employee information.")
 public class EmployeeController extends BaseController<Employee, EmployeeDto, EmployeeService> {
 
     public EmployeeController(EmployeeService service) {
@@ -29,9 +30,9 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto, Em
 
     @Operation(
             summary = "Fetch all Employees",
-            description = "Fetches all Employee entities and their data from data source")
+            description = "Retrieves a list of all employee registered in the system.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<EmployeeDto>> getAll() {
@@ -40,9 +41,9 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto, Em
 
     @Operation(
             summary = "Fetch a Employee by Id",
-            description = "Fetches a Employee entity and their data from data source by an specific Id")
+            description = "Retrieves the details of a specific employee using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<EmployeeDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto, Em
     }
 
     @Operation(
-            summary = "Adds a Employee",
-            description = "Adds a Employee to the list of Employees in the data source")
+            summary = "Create a new Employee",
+            description = "Creates a new employee in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a Employee"),
-            @ApiResponse(responseCode = "500", description = "invalid Employee cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Bad Credentials")
     })
     @Override
     public ResponseEntity<EmployeeDto> save(@NotNull @Valid @RequestBody EmployeeDto dto) {
@@ -63,10 +64,10 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto, Em
 
     @Operation(
             summary = "Delete a Employee",
-            description = "Delete a Employee by a specific id from the list of Employees in the data source")
+            description = "Marks a specific employee as deleted without permanently removing it from the system. The employee is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a Employee"),
-            @ApiResponse(responseCode = "404", description = "there is not Employee with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Employee")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class EmployeeController extends BaseController<Employee, EmployeeDto, Em
 
     @Operation(
             summary = "Update a Employee",
-            description = "Update a Employee by a specific id from the list of Employees in the data source")
+            description = "Updates the details of an existing employee. Requires the unique ID of the employee and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a Employee"),
-            @ApiResponse(responseCode = "404", description = "there is not Employee with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Employee")
     })
     @Override
     public ResponseEntity<EmployeeDto> update(@NotNull @Valid @RequestBody EmployeeDto dto) {

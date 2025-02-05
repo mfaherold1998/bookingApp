@@ -15,7 +15,6 @@ import com.example.booking.utils.Constants;
 import com.example.booking.utils.Enums;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 

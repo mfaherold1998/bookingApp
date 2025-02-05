@@ -20,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
-@Tag(name = "Bookings", description = "The Bookings API")
+
+@Tag(name = "Bookings", description = "API for scheduling and managing appointments within the company.")
 public class BookingController extends BaseController<Booking, BookingDto, BookingService> {
 
     public BookingController(BookingService service) {
@@ -29,9 +30,9 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
 
     @Operation(
             summary = "Fetch all Bookings",
-            description = "Fetches all Booking entities and their data from data source")
+            description = "Retrieves a list of all appointments booked within the company.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<BookingDto>> getAll() {
@@ -40,9 +41,9 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
 
     @Operation(
             summary = "Fetch a Booking by Id",
-            description = "Fetches a Booking entity and their data from data source by an specific Id")
+            description = "Retrieves the details of a specific appointment using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<BookingDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
     }
 
     @Operation(
-            summary = "Adds a Booking",
-            description = "Adds a Booking to the list of Bookings in the data source")
+            summary = "Create a new Booking",
+            description = "Creates a new appointment in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a Booking"),
-            @ApiResponse(responseCode = "500", description = "invalid Booking cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Invalid Booking Credentials")
     })
     @Override
     public ResponseEntity<BookingDto> save(@NotNull @Valid @RequestBody BookingDto dto) {
@@ -63,10 +64,10 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
 
     @Operation(
             summary = "Delete a Booking",
-            description = "Delete a Booking by a specific id from the list of Bookings in the data source")
+            description = "Marks a specific appointment as deleted without permanently removing it from the system. The booking is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a Booking"),
-            @ApiResponse(responseCode = "404", description = "there is not Booking with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Booking")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
 
     @Operation(
             summary = "Update a Booking",
-            description = "Update a Booking by a specific id from the list of Bookings in the data source")
+            description = "Updates the details of an existing appointment. Requires the unique ID of the booking and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a Booking"),
-            @ApiResponse(responseCode = "404", description = "there is not Booking with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Booking")
     })
     @Override
     public ResponseEntity<BookingDto> update(@NotNull @Valid @RequestBody BookingDto dto) {

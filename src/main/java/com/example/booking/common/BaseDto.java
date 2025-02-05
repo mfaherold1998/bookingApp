@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
-
 public abstract class BaseDto {
 
     protected Long id;

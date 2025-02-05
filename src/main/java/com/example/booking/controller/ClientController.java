@@ -20,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clients")
-@Tag(name = "Clients", description = "The Clients API")
+
+@Tag(name = "Clients", description = "API for managing client information.")
 public class ClientController extends BaseController<Client,ClientDto, ClientService> {
 
     public ClientController(ClientService service) {
@@ -29,9 +30,9 @@ public class ClientController extends BaseController<Client,ClientDto, ClientSer
 
     @Operation(
             summary = "Fetch all Clients",
-            description = "Fetches all Clients entities and their data from data source")
+            description = "Retrieves a list of all clients registered in the system.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<ClientDto>> getAll() {
@@ -40,9 +41,9 @@ public class ClientController extends BaseController<Client,ClientDto, ClientSer
 
     @Operation(
             summary = "Fetch a Client by Id",
-            description = "Fetches a Client entity and their data from data source by an specific Id")
+            description = "Retrieves the details of a specific client using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<ClientDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class ClientController extends BaseController<Client,ClientDto, ClientSer
     }
 
     @Operation(
-            summary = "Adds a Client",
-            description = "Adds a Client to the list of Clients in the data source")
+            summary = "Create a new Client",
+            description = "Creates a new client in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a Client"),
-            @ApiResponse(responseCode = "500", description = "invalid Client cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Bad Credentials")
     })
     @Override
     public ResponseEntity<ClientDto> save(@NotNull @Valid @RequestBody ClientDto dto) {
@@ -63,10 +64,10 @@ public class ClientController extends BaseController<Client,ClientDto, ClientSer
 
     @Operation(
             summary = "Delete a Client",
-            description = "Delete a Client by a specific id from the list of Clients in the data source")
+            description = "Marks a specific client as deleted without permanently removing it from the system. The client is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a Client"),
-            @ApiResponse(responseCode = "404", description = "there is not Client with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Client")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class ClientController extends BaseController<Client,ClientDto, ClientSer
 
     @Operation(
             summary = "Update a Client",
-            description = "Update a Client by a specific id from the list of Clients in the data source")
+            description = "Updates the details of an existing client. Requires the unique ID of the client and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a Client"),
-            @ApiResponse(responseCode = "404", description = "there is not Client with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Client")
     })
     @Override
     public ResponseEntity<ClientDto> update(@NotNull @Valid @RequestBody ClientDto dto) {

@@ -4,14 +4,10 @@ import com.example.booking.utils.Enums;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Date;
 import java.util.Random;
 
-
-//@EqualsAndHashCode(callSuper = true)
-//@Data
 @Setter
 @Getter
 @Builder
@@ -19,7 +15,6 @@ import java.util.Random;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "VerificationCode")
-//@SQLRestriction("deleted = false")
 public class VerificationCode {
 
     @Id

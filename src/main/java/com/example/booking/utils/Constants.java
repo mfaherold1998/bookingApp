@@ -51,11 +51,11 @@ public class Constants {
 
         String text = String.format(
                 """
-                        Dear owner,
-                        
-                        We inform you that the invitation to user %s sent at %s to work in your company has been %s.
-                        Best regards,
-                        Assistance""",
+                Dear owner,
+                
+                We inform you that the invitation to user %s sent at %s to work in your company has been %s.
+                Best regards,
+                Assistance""",
                 userEmail,
                 dateTime.format(formatter),
                 type

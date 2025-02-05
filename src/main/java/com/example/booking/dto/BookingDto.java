@@ -12,10 +12,13 @@ import java.util.List;
 
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class BookingDto extends BaseDto {
+
+    private Long id;
 
     @NotNull
     @Valid
@@ -23,14 +26,17 @@ public class BookingDto extends BaseDto {
 
     @NotNull
     @Valid
-    private List<ProcedureDto> procedures = Collections.emptyList();
+    private ProcedureDto procedure;
 
     @NotNull
     @Valid
     private ClientDto client;
 
     private LocalDate bookingDay;
+
     private LocalTime startTime;
+
     private LocalTime endTime;
-    private String status = "Pending";
+
+    private String status;
 }

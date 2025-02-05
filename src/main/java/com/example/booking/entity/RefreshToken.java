@@ -3,7 +3,6 @@ package com.example.booking.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Date;
 
@@ -15,7 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 
 @Table(name = "RefreshToken")
-//@SQLRestriction("deleted = false")
 public class RefreshToken {
 
     @Id

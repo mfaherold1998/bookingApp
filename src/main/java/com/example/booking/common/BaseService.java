@@ -30,7 +30,7 @@ public abstract class BaseService<
 
     public D getDtoById(Long id) {
         E entity = getEntityById(id);
-        if(entity.isDeleted){
+        if(entity.deleted){
             throw new NotFoundException();
         }
         return mapper.toDto(entity);
@@ -52,6 +52,8 @@ public abstract class BaseService<
         return repository.findAll().stream().map(mapper::toDto).toList();
     }
 
+    public List<E> getAllEntity() { return repository.findAll(); }
+
     public E update(E entity) {
         entity.setUpdatedDate(LocalDateTime.now());
         return repository.save(entity);
@@ -68,7 +70,7 @@ public abstract class BaseService<
     public Boolean delete(Long id) {
         if (repository.existsById(id)) {
             E entity = getEntityById(id);
-            entity.setIsDeleted(Boolean.TRUE);
+            entity.setDeleted(Boolean.TRUE);
             repository.saveAndFlush(entity);
             return Boolean.TRUE;
         } else {

@@ -25,6 +25,7 @@ public class AuthEntryPointConfig implements AuthenticationEntryPoint {
         response.setContentType("application/json");
         response.getWriter().write(convertObjectToJson(error));
     }
+
     private String convertObjectToJson(Object object) throws JsonProcessingException {
         if (object == null) {
             return null;

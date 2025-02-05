@@ -1,7 +1,6 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,9 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 
-
-//@EqualsAndHashCode(callSuper = true)
-//@Data
 @Setter
 @Getter
 @Builder
@@ -40,6 +36,7 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @JsonManagedReference
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RefreshToken> refreshTokens;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<VerificationCode> verificationCode;
@@ -86,5 +83,5 @@ public class UserEntity extends BaseEntity implements UserDetails {
         return true;
     }
     @Override
-    public boolean isEnabled() {return !this.isDeleted;}
+    public boolean isEnabled() {return !this.deleted;}
 }

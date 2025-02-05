@@ -4,7 +4,6 @@ import com.example.booking.exception.CustomExceptionBody;
 import com.example.booking.utils.JwtUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.security.auth.message.AuthException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import lombok.NonNull;
@@ -57,7 +56,7 @@ public class JwtAuthFilterConfig extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) throws ServletException {
-        //I do not filter on /auth/.*
+        ///El filtro no se ejecuta en /auth/.*
         List<RequestMatcher> requestMatchers = List.of(
                 new RegexRequestMatcher("/v3/api-docs", null),
                 new RegexRequestMatcher("/v3/api-docs/.*", null),

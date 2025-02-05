@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/role")
-@Tag(name = "Roles", description = "The Roles API")
+
+@Tag(name = "Roles", description = "API for managing roles operations.")
 public class RoleController extends BaseController<RoleEntity, RoleDto, RoleService> {
     public RoleController(RoleService service) {super(service);}
 }

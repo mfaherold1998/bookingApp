@@ -1,7 +1,6 @@
 package com.example.booking.entity;
 
 import com.example.booking.common.BaseEntity;
-import com.example.booking.utils.Enums;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -41,11 +40,11 @@ public class Booking extends BaseEntity {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    private LocalDate bookingDay;
+    private LocalDate bookingDay = LocalDate.now();
 
-    private LocalTime startTime;
+    private LocalTime startTime = LocalTime.now();
 
-    private LocalTime endTime;
+    private LocalTime endTime = LocalTime.now();
 
     private String status;
 }

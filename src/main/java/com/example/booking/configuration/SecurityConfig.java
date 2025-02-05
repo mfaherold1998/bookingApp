@@ -47,6 +47,7 @@ public class SecurityConfig {
                                 new RegexRequestMatcher("/auth/login", HttpMethod.POST.name()),
                                 new RegexRequestMatcher("/auth/refresh/.*", HttpMethod.GET.name())
                         ).permitAll()
+                        .requestMatchers(new RegexRequestMatcher("/auth/activate_email/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
                 )
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(new RegexRequestMatcher("/api/invitations/send", HttpMethod.POST.name())).hasAuthority(PROPRIETOR.getValue())
@@ -60,10 +61,10 @@ public class SecurityConfig {
                         .requestMatchers(new RegexRequestMatcher("/role/delete/.*", HttpMethod.DELETE.name())).hasAuthority(SUPERADMIN.getValue())
                 )
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(new RegexRequestMatcher("/user/get/.*", HttpMethod.GET.name())).hasAnyAuthority(PROPRIETOR.getValue(), CLIENT.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/user/save", HttpMethod.POST.name())).hasAnyAuthority(PROPRIETOR.getValue(), CLIENT.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/user/update/.*", HttpMethod.PUT.name())).hasAnyAuthority(PROPRIETOR.getValue(), CLIENT.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/user/delete/.*", HttpMethod.DELETE.name())).hasAnyAuthority(PROPRIETOR.getValue(), CLIENT.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/user/get/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/user/save", HttpMethod.POST.name())).hasAuthority(CLIENT.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/user/update/.*", HttpMethod.PUT.name())).hasAuthority(CLIENT.getValue())
+                        .requestMatchers(new RegexRequestMatcher("/user/delete/.*", HttpMethod.DELETE.name())).hasAuthority(CLIENT.getValue())
                 )
                 .authorizeHttpRequests(request -> request.anyRequest().denyAll()) //Every other request is denied
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

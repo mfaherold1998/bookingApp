@@ -6,6 +6,7 @@ import com.example.booking.dto.SignUpRequest;
 import com.example.booking.entity.*;
 import com.example.booking.exception.AuthException;
 import com.example.booking.exception.CustomException;
+import com.example.booking.exception.NotFoundException;
 import com.example.booking.repository.RefreshTokenRepository;
 import com.example.booking.repository.VerificationCodeRepository;
 import com.example.booking.utils.Constants;
@@ -140,7 +141,7 @@ public class AuthService {
     public JwtAuthResponse refresh(String token) {
         Optional<RefreshToken> optionalRefreshToken = refreshTokenRepository.findByToken(token);
         RefreshToken refreshToken = optionalRefreshToken.orElseThrow(
-                () -> AuthException.builder().message(Constants.Errors.INVALID_REFRESH_TOKEN).build()
+                NotFoundException::new
         );
         if(refreshToken.getExpirationDate().before(new Date())){
             throw AuthException.builder().message(Constants.Errors.INVALID_REFRESH_TOKEN).build();
@@ -160,7 +161,9 @@ public class AuthService {
     }
 
     public Boolean activateEmail(String code) {
+
         Optional<VerificationCode> optionalVerificationCode = verificationCodeRepository.findByCode(code);
+
         if(optionalVerificationCode.isPresent()){
             VerificationCode verificationCode = optionalVerificationCode.get();
             if(verificationCode.getExpirationDate().after(new Date(System.currentTimeMillis()))){

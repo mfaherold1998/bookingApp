@@ -20,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/procedures")
-@Tag(name = "Procedures", description = "The Procedures API")
+
+@Tag(name = "Procedures", description = "API for managing the corporation services information.")
 public class ProcedureController extends BaseController<Procedure, ProcedureDto, ProcedureService> {
 
     public ProcedureController(ProcedureService service) {
@@ -29,9 +30,9 @@ public class ProcedureController extends BaseController<Procedure, ProcedureDto,
 
     @Operation(
             summary = "Fetch all Procedures",
-            description = "Fetches all Procedure entities and their data from data source")
+            description = "Retrieves a list of all procedures registered in the system.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<List<ProcedureDto>> getAll() {
@@ -40,9 +41,9 @@ public class ProcedureController extends BaseController<Procedure, ProcedureDto,
 
     @Operation(
             summary = "Fetch a Procedure by Id",
-            description = "Fetches a Procedure entity and their data from data source by an specific Id")
+            description = "Retrieves the details of a specific procedure using its unique ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
+            @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
     public ResponseEntity<ProcedureDto> getById(@PathVariable Long id) {
@@ -50,11 +51,11 @@ public class ProcedureController extends BaseController<Procedure, ProcedureDto,
     }
 
     @Operation(
-            summary = "Adds a Procedure",
-            description = "Adds a Procedure to the list of Procedures in the data source")
+            summary = "Create a new Procedure",
+            description = "Creates a new procedure in the system with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added a Procedure"),
-            @ApiResponse(responseCode = "500", description = "invalid Procedure cannot be added")
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
+            @ApiResponse(responseCode = "500", description = "Bad Request")
     })
     @Override
     public ResponseEntity<ProcedureDto> save(@NotNull @Valid @RequestBody ProcedureDto dto) {
@@ -63,10 +64,10 @@ public class ProcedureController extends BaseController<Procedure, ProcedureDto,
 
     @Operation(
             summary = "Delete a Procedure",
-            description = "Delete a Procedure by a specific id from the list of Procedures in the data source")
+            description = "Marks a specific procedure as deleted without permanently removing it from the system. The procedure is flagged as inactive but remains in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "successfully deleted a Procedure"),
-            @ApiResponse(responseCode = "404", description = "there is not Procedure with the given id")
+            @ApiResponse(responseCode = "202", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Procedure")
     })
     @Override
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
@@ -75,10 +76,10 @@ public class ProcedureController extends BaseController<Procedure, ProcedureDto,
 
     @Operation(
             summary = "Update a Procedure",
-            description = "Update a Procedure by a specific id from the list of Procedures in the data source")
+            description = "Updates the details of an existing procedure. Requires the unique ID of the procedure and the new data to be saved.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successfully updated a Procedure"),
-            @ApiResponse(responseCode = "404", description = "there is not Procedure with the given id")
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "404", description = "Non-existent Procedure")
     })
     @Override
     public ResponseEntity<ProcedureDto> update(@NotNull @Valid @RequestBody ProcedureDto dto) {
