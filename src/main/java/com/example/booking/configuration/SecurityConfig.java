@@ -22,6 +22,7 @@ import static com.example.booking.utils.Enums.RoleNames.*;
 
 @Configuration
 @EnableWebSecurity
+//@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
