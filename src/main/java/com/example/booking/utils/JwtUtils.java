@@ -50,7 +50,7 @@ public class JwtUtils {
 
     public String generateToken(Map<String, Object> extraClaims, String subject) {
         return Jwts.builder()
-                .claims(extraClaims)
+                .claims(extraClaims) //Donde se agregan los roles en el token?
                 .subject(subject)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiration))

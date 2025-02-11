@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,7 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
             @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
+    @PreAuthorize("hasAuthority('CLIENT')")
     public ResponseEntity<List<BookingDto>> getAll() {
         return super.getAll();
     }

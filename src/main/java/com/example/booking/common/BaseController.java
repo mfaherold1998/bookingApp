@@ -68,9 +68,9 @@ public abstract class BaseController<E extends BaseEntity, D extends BaseDto, S 
     protected Boolean checkCanUpdate(UserEntity currentUser, D toUpdate, Long id){return Boolean.TRUE;}
     protected Boolean checkCanDelete(UserEntity currentUser, Long id){return Boolean.TRUE;}
 
-    public UserEntity getAuthenticatedUser() {
+    /*public UserEntity getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (UserEntity) authentication.getPrincipal();
-    }
+    }*/
 }
 

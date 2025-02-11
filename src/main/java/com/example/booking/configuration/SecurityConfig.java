@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -22,7 +23,7 @@ import static com.example.booking.utils.Enums.RoleNames.*;
 
 @Configuration
 @EnableWebSecurity
-//@EnableMethodSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -42,32 +43,7 @@ public class SecurityConfig {
                                 new RegexRequestMatcher("/swagger-ui/.*", null)
                         ).permitAll()
                 )
-                .authorizeHttpRequests(request -> request
-                        .requestMatchers(
-                                new RegexRequestMatcher("/auth/register", HttpMethod.POST.name()),
-                                new RegexRequestMatcher("/auth/login", HttpMethod.POST.name()),
-                                new RegexRequestMatcher("/auth/refresh/.*", HttpMethod.GET.name())
-                        ).permitAll()
-                        .requestMatchers(new RegexRequestMatcher("/auth/activate_email/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
-                )
-                .authorizeHttpRequests(request -> request
-                        .requestMatchers(new RegexRequestMatcher("/api/invitations/send", HttpMethod.POST.name())).hasAuthority(PROPRIETOR.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/api/invitations/accept/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/api/invitations/reject/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
-                )
-                .authorizeHttpRequests(request -> request
-                        .requestMatchers(new RegexRequestMatcher("/role/get/.*", HttpMethod.GET.name())).hasAuthority(SUPERADMIN.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/role/save", HttpMethod.POST.name())).hasAuthority(SUPERADMIN.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/role/update/.*", HttpMethod.PUT.name())).hasAuthority(SUPERADMIN.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/role/delete/.*", HttpMethod.DELETE.name())).hasAuthority(SUPERADMIN.getValue())
-                )
-                .authorizeHttpRequests(request -> request
-                        .requestMatchers(new RegexRequestMatcher("/user/get/.*", HttpMethod.GET.name())).hasAuthority(CLIENT.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/user/save", HttpMethod.POST.name())).hasAuthority(CLIENT.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/user/update/.*", HttpMethod.PUT.name())).hasAuthority(CLIENT.getValue())
-                        .requestMatchers(new RegexRequestMatcher("/user/delete/.*", HttpMethod.DELETE.name())).hasAuthority(CLIENT.getValue())
-                )
-                .authorizeHttpRequests(request -> request.anyRequest().denyAll()) //Every other request is denied
+                .authorizeHttpRequests(request -> request.anyRequest().permitAll()) //Every other request is denied
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilterConfiguration, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(authenticationProvider);
