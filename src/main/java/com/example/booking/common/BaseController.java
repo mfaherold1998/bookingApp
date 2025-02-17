@@ -6,8 +6,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +16,7 @@ public abstract class BaseController<E extends BaseEntity, D extends BaseDto, S 
     protected final S service;
 
     @PostMapping(value = "/save")
+    @ResponseBody
     public ResponseEntity<D> save(@NotNull @Valid @RequestBody D dto) {
 
         if(checkCanSave(service.getAuthenticatedUser(), dto)){
@@ -37,7 +36,6 @@ public abstract class BaseController<E extends BaseEntity, D extends BaseDto, S 
 
     @GetMapping(value = "/getall")
     public ResponseEntity<List<D>> getAll(){
-
         if(checkCanGetAll(service.getAuthenticatedUser())){
             return ResponseEntity.ok(service.getAllDto());
         }
@@ -68,9 +66,5 @@ public abstract class BaseController<E extends BaseEntity, D extends BaseDto, S 
     protected Boolean checkCanUpdate(UserEntity currentUser, D toUpdate, Long id){return Boolean.TRUE;}
     protected Boolean checkCanDelete(UserEntity currentUser, Long id){return Boolean.TRUE;}
 
-    /*public UserEntity getAuthenticatedUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (UserEntity) authentication.getPrincipal();
-    }*/
 }
 

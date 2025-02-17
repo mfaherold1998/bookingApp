@@ -4,6 +4,7 @@ import com.example.booking.common.BaseDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @Setter
 @Getter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
+@SuperBuilder
 public class BookingDto extends BaseDto {
-
-    private Long id;
 
     @NotNull
     @Valid

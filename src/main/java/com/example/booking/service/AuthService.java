@@ -60,8 +60,8 @@ public class AuthService {
         Set<String> roles = new HashSet<>();
 
         switch (request.getRoleName()) {
-            case "user" -> roles.add(Enums.RoleNames.CLIENT.getValue());
-            case "owner" -> roles.addAll(Arrays.asList(
+            case "CLIENT" -> roles.add(Enums.RoleNames.CLIENT.getValue());
+            case "PROPRIETOR" -> roles.addAll(Arrays.asList(
                     Enums.RoleNames.CLIENT.getValue(),
                     Enums.RoleNames.PROPRIETOR.getValue()
             ));

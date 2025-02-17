@@ -21,7 +21,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
-
 @Tag(name = "Bookings", description = "API for scheduling and managing appointments within the company.")
 public class BookingController extends BaseController<Booking, BookingDto, BookingService> {
 
@@ -36,7 +35,7 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
             @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
-    @PreAuthorize("hasAuthority('CLIENT')")
+    @PreAuthorize("hasAuthority('SUPERADMIN')")
     public ResponseEntity<List<BookingDto>> getAll() {
         return super.getAll();
     }
@@ -48,6 +47,7 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
             @ApiResponse(responseCode = "200", description = "Successful Operation")
     })
     @Override
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'EMPLOYEE', 'PROPRIETOR','SUPERADMIN')")
     public ResponseEntity<BookingDto> getById(@PathVariable Long id) {
         return super.getById(id);
     }
@@ -60,6 +60,7 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
             @ApiResponse(responseCode = "500", description = "Invalid Booking Credentials")
     })
     @Override
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'EMPLOYEE', 'PROPRIETOR','SUPERADMIN')")
     public ResponseEntity<BookingDto> save(@NotNull @Valid @RequestBody BookingDto dto) {
         return super.save(dto);
     }
@@ -72,6 +73,7 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
             @ApiResponse(responseCode = "404", description = "Non-existent Booking")
     })
     @Override
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'EMPLOYEE', 'PROPRIETOR','SUPERADMIN')")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return super.delete(id);
     }
@@ -84,6 +86,7 @@ public class BookingController extends BaseController<Booking, BookingDto, Booki
             @ApiResponse(responseCode = "404", description = "Non-existent Booking")
     })
     @Override
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'EMPLOYEE', 'PROPRIETOR','SUPERADMIN')")
     public ResponseEntity<BookingDto> update(@NotNull @Valid @RequestBody BookingDto dto) {
         return super.update(dto);
     }

@@ -5,13 +5,13 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Setter
 @Getter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
+@SuperBuilder
 public class EmployeeDto extends BaseDto {
 
     @NotNull
@@ -23,10 +23,10 @@ public class EmployeeDto extends BaseDto {
     @Email
     private String email;
 
-    @Valid
+    //@Valid
     private EmployeeAgendaDto agenda;
 
-    @NotNull
-    @Valid
+    //@NotNull
+    //@Valid
     private SubdivisionDto subdivision;
 }
