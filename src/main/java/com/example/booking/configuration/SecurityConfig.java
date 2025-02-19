@@ -40,7 +40,7 @@ public class SecurityConfig {
                                 new RegexRequestMatcher("/swagger-ui/.*", null)
                         ).permitAll()
                 )
-                .authorizeHttpRequests(request -> request.anyRequest().permitAll()) //Every other request is denied
+                .authorizeHttpRequests(request -> request.anyRequest().permitAll()) //Every other request is controlled from preauthorize by code
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilterConfiguration, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(authenticationProvider);

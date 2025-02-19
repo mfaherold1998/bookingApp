@@ -18,7 +18,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -91,18 +90,6 @@ public class AuthController {
         }
 
     }
-
-
-    /*@Operation(
-            summary = "Verification email",
-            description = "Sends an email containing a unique verification code to the user. This code is required to verify the account and complete the registration process.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
-    })
-    @GetMapping("/send_verification_email/{email}")
-    public ResponseEntity<Boolean> sendVerificationEmail(@NotNull @PathVariable String email) {
-        return ResponseEntity.ok(authService.sendVerificationEmail(email));
-    }*/
 
     public UserEntity getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

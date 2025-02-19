@@ -109,7 +109,9 @@ public class AuthService {
     }
 
     public JwtAuthResponse login(SignInRequest request) {
+
         var authRequest = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
+
         try {
             authenticationManager.authenticate(authRequest);
         } catch (BadCredentialsException ex) {
@@ -131,6 +133,7 @@ public class AuthService {
         RefreshToken refreshToken = jwtUtils.createRefreshToken(email);
 
         refreshTokenRepository.save(refreshToken);
+
         return JwtAuthResponse.builder()
                 .token(token)
                 .refreshToken(refreshToken.getToken())
@@ -139,7 +142,9 @@ public class AuthService {
     }
 
     public JwtAuthResponse refresh(String token) {
+
         Optional<RefreshToken> optionalRefreshToken = refreshTokenRepository.findByToken(token);
+
         RefreshToken refreshToken = optionalRefreshToken.orElseThrow(
                 NotFoundException::new
         );
@@ -148,7 +153,9 @@ public class AuthService {
         }
 
         HashMap<String, Object> extraClaims = new HashMap<>();
+
         String accessToken = jwtUtils.generateToken(extraClaims, refreshToken.getUser().getEmail());
+
         return JwtAuthResponse.builder()
                 .token(accessToken)
                 .refreshToken(refreshToken.getToken())
@@ -156,6 +163,7 @@ public class AuthService {
                 .build();
 
     }
+
     private Boolean isEmailAlreadyRegistered(String email) {
         return userService.getRepository().findByEmail(email).isPresent();
     }
@@ -165,7 +173,9 @@ public class AuthService {
         Optional<VerificationCode> optionalVerificationCode = verificationCodeRepository.findByCode(code);
 
         if(optionalVerificationCode.isPresent()){
+
             VerificationCode verificationCode = optionalVerificationCode.get();
+
             if(verificationCode.getExpirationDate().after(new Date(System.currentTimeMillis()))){
                 UserEntity user = verificationCode.getUser();
                 user.setConfirmedEmail(Boolean.TRUE);
