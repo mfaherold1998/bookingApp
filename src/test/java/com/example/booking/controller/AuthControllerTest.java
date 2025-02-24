@@ -5,7 +5,6 @@ import com.example.booking.configuration.SecurityConfig;
 import com.example.booking.dto.JwtAuthResponse;
 import com.example.booking.dto.SignInRequest;
 import com.example.booking.dto.SignUpRequest;
-import com.example.booking.entity.UserEntity;
 import com.example.booking.entity.VerificationCode;
 import com.example.booking.exception.AuthException;
 import com.example.booking.exception.CustomException;
@@ -25,7 +24,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -33,7 +31,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
