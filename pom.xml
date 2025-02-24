@@ -39,7 +39,7 @@
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.xmlReportPaths>
-			${project.basedir}/target/jacoco-report/jacoco.xml</sonar.jacoco.xmlReportPaths>
+			${project.build.directory}/site/jacoco/jacoco.xml</sonar.jacoco.xmlReportPaths>
 		<sonar.coverage.exclusions>**/OnlineOrdersApplication.java,
 			**/entity/*.java,**/utils/*.java,**/mappers/*.java</sonar.coverage.exclusions>
 
@@ -334,11 +334,12 @@
 							</execution>
 							<execution>
 								<id>report</id>
+								<phase>verify</phase>
 								<goals>
 									<goal>report</goal>
 								</goals>
 								<configuration>
-									<outputDirectory>${project.build.directory}/jacoco-report</outputDirectory>
+									<outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
 									<formats>
 										<format>XML</format>
 									</formats>
