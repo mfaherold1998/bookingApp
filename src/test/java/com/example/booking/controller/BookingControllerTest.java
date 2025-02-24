@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Disabled
+//@Disabled
 @Import(SecurityConfig.class)
 @AutoConfigureMockMvc
 @WebMvcTest(BookingController.class)
@@ -69,7 +69,7 @@ class BookingControllerTest {
 
         for (var role : allRoles) {
 
-            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService, bookingService);
+            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService);
 
             when(bookingService.getAllDto()).thenReturn(mockBookings);
 
@@ -98,7 +98,7 @@ class BookingControllerTest {
 
         for (var role : allRoles) {
 
-            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService, bookingService);
+            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService);
 
             when(bookingService.getDtoById(id)).thenReturn(bookDto);
 
@@ -127,7 +127,7 @@ class BookingControllerTest {
 
         for (var role : allRoles) {
 
-            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService, bookingService);
+            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService);
 
             when(bookingService.save(any(BookingDto.class))).thenReturn(bookDto);
 
@@ -152,7 +152,7 @@ class BookingControllerTest {
 
         for (var role : allRoles) {
 
-            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService, bookingService);
+            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService);
 
             when(bookingService.delete(any(Long.class))).thenReturn(Boolean.TRUE);
 
@@ -180,7 +180,7 @@ class BookingControllerTest {
 
         for (var role : allRoles) {
 
-            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService, bookingService);
+            var mockedUser = TestUtils.mockUserAuthenticationWithRole(role, jwtUtils, userDetailsService);
 
             when(bookingService.update(any(BookingDto.class))).thenReturn(bookDto);
 

@@ -1,6 +1,5 @@
 package com.example.booking.utils;
 
-import com.example.booking.common.BaseService;
 import com.example.booking.entity.RoleEntity;
 import com.example.booking.entity.UserEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,6 +30,7 @@ public class TestUtils {
                         .build())
                 .collect(Collectors.toSet());
         return UserEntity.builder()
+                .id(1L)
                 .email("user@example.com")
                 .password("password")
                 .roles(mockedRoles)
@@ -40,28 +40,25 @@ public class TestUtils {
     public static UserEntity mockUserAuthenticationWithRoles(
             Set<Enums.RoleNames> roleNames,
             JwtUtils jwtUtils,
-            UserDetailsService userDetailsService,
-            BaseService service
+            UserDetailsService userDetailsService
     ){
         var mockedUser = TestUtils.getMockedUserWithRoles(roleNames);
         when(jwtUtils.extractSubject(any())).thenReturn(mockedUser.getEmail());
         when(jwtUtils.isTokenValid(any())).thenReturn(Boolean.TRUE);
         when(userDetailsService.loadUserByUsername(anyString())).thenReturn(mockedUser);
-        when(service.getAuthenticatedUser()).thenReturn(mockedUser);
         return mockedUser;
     }
 
     public static UserEntity mockUserAuthenticationWithRole(
             Enums.RoleNames roleName,
             JwtUtils jwtUtils,
-            UserDetailsService userDetailsService,
-            BaseService service
+            UserDetailsService userDetailsService
     ){
         var mockedUser = TestUtils.getMockedUserWithRoles(Set.of(roleName));
         when(jwtUtils.extractSubject(any())).thenReturn(mockedUser.getEmail());
         when(jwtUtils.isTokenValid(any())).thenReturn(Boolean.TRUE);
         when(userDetailsService.loadUserByUsername(anyString())).thenReturn(mockedUser);
-        when(service.getAuthenticatedUser()).thenReturn(mockedUser);
         return mockedUser;
     }
+
 }

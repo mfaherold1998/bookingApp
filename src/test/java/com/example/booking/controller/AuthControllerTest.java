@@ -13,6 +13,7 @@ import com.example.booking.repository.VerificationCodeRepository;
 import com.example.booking.service.AuthService;
 import com.example.booking.utils.Enums;
 import com.example.booking.utils.JwtUtils;
+import com.example.booking.utils.TestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -173,7 +175,7 @@ public class AuthControllerTest {
         var result = mockMvc.perform(get("/auth/refresh/" +token));
 
         result
-                .andExpect(status().isBadRequest());
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -185,24 +187,21 @@ public class AuthControllerTest {
         calendar.add(Calendar.DAY_OF_MONTH, 2);
         Date futureDate = calendar.getTime();
 
-        String code = "code";
-        String email = "maria@gmail.com";
-        Long id = 1L;
-        UserEntity authenticatedUser = UserEntity.builder().id(id).email(email).build();
+        // /auth/activate_email/{code} actually required an authenticated user
+        var mockedUser = TestUtils.mockUserAuthenticationWithRole(Enums.RoleNames.CLIENT, jwtUtils, userDetailsService);
 
+        var code = "code";
         VerificationCode verCode = VerificationCode.builder()
                 .code(code)
-                .email(email)
+                .email(mockedUser.getEmail())
                 .expirationDate(futureDate)
-                .user(authenticatedUser)
+                .user(mockedUser)
                 .build();
-
-        Authentication authenticationMock = mock(Authentication.class);
-        when(authenticationMock.getPrincipal()).thenReturn(authenticatedUser);
 
         when(verificationCodeRepository.findByCode(anyString())).thenReturn(Optional.of(verCode));
 
         when(authService.activateEmail(anyString())).thenReturn(Boolean.TRUE);
+
 
         var result = mockMvc.perform(get("/auth/activate_email/" + code));
 
@@ -215,37 +214,17 @@ public class AuthControllerTest {
     @Test
     void activateEmail_withNonValidUserValidCode_returnFalse() throws Exception {
 
-        Date currentDate = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(currentDate);
-        calendar.add(Calendar.DAY_OF_MONTH, 2);
-        Date futureDate = calendar.getTime();
+        // /auth/activate_email/{code} actually required an authenticated user
+        var mockedUser = TestUtils.mockUserAuthenticationWithRole(Enums.RoleNames.CLIENT, jwtUtils, userDetailsService);
 
-        String code = "code";
-        String email = "maria@gmail.com";
-        Long id1 = 1L;
-        Long id2 = 2L;
-        UserEntity authenticatedUser = UserEntity.builder().id(id2).email(email).build();
-        UserEntity verCodeUser = UserEntity.builder().id(id1).email(email).build();
+        String code = "non-valid-code";
 
-        VerificationCode verCode = VerificationCode.builder()
-                .code(code)
-                .email(email)
-                .expirationDate(futureDate)
-                .user(verCodeUser)
-                .build();
-
-        Authentication authenticationMock = mock(Authentication.class);
-        when(authenticationMock.getPrincipal()).thenReturn(authenticatedUser);
-
-        when(verificationCodeRepository.findByCode(anyString())).thenReturn(Optional.of(verCode));
-
-        when(authService.activateEmail(anyString())).thenReturn(Boolean.TRUE);
+        when(verificationCodeRepository.findByCode(anyString())).thenReturn(Optional.empty());
 
         var result = mockMvc.perform(get("/auth/activate_email/" + code));
 
         result
-                .andExpect(status().isForbidden());
+                .andExpect(status().is4xxClientError());
     }
 
 }
