@@ -36,12 +36,17 @@
 		<sonar.version>4.0.0.4121</sonar.version>
 		<sonar.organization>mfaherold1998</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.jacoco.xmlReportPaths>
-			${project.build.directory}/site/jacoco/jacoco.xml</sonar.jacoco.xmlReportPaths>
-		<sonar.coverage.exclusions>**/OnlineOrdersApplication.java,
-			**/entity/*.java,**/utils/*.java,**/mappers/*.java</sonar.coverage.exclusions>
+
+		<sonar.coverage.jacoco.xmlReportPaths>
+			${project.build.directory}/site/jacoco/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.coverage.exclusions>src/main/java/**/BookingApplication.java,
+			src/main/java/**/entity/*.java,
+			src/main/java/**/utils/*.java,
+			src/main/java/**/mappers/*.java
+		</sonar.coverage.exclusions>
 
 		<!-- ARTIFACTS VERSIONS -->
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
