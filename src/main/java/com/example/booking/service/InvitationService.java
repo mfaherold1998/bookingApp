@@ -50,7 +50,7 @@ public class InvitationService {
                 .user(invitedUser)
                 .token(invitationToken)
                 .status(Enums.InvitationStatus.PENDING.getValue())
-                .proprietor(proprietorService.getEntityById(request.getHostProprietor()))
+                .proprietor(proprietorService.getEntityById(request.getHostProprietorId()))
                 .expirationDate(LocalDateTime.now().plusDays(7))
                 .build();
 

@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,6 +62,12 @@ public abstract class BaseController<E extends BaseEntity, D extends BaseDto, S 
         }
         throw new CantDeleteException();
     }
+
+    public UserEntity getAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (UserEntity) authentication.getPrincipal();
+    }
+
     protected Boolean checkCanGetAll(UserEntity currentUser){return Boolean.TRUE;}
     protected Boolean checkCanGet(UserEntity currentUser, Long id){return Boolean.TRUE;}
     protected Boolean checkCanSave(UserEntity currentUser, D toSave){return Boolean.TRUE;}
